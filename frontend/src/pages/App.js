@@ -6,6 +6,7 @@ import Login from "./Login/Login";
 import Form from "./Form/Form";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" component={Login}></Route>
         <Route path="/form" component={Form}></Route>
         <Route path="/error" component={ErrorPage}></Route>
+        <Footer />
       </BrowserRouter>
     </div>
   );
