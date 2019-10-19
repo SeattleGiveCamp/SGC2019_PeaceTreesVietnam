@@ -2,10 +2,11 @@ const express = require("express");
 const mysql = require("mysql");
 
 var connection = mysql.createConnection({
-  host: "172.19.0.3",
+  host: "localhost",
   user: "root",
   password: "example",
-  database: "Vietnam"
+  database: "Vietnam",
+  port: "3306"
 });
 
 const app = express();
@@ -16,6 +17,7 @@ app.get("/", (req, res)=>{res.send("Hellow world!")});
 app.get("/test", getData);
 
 function getData(req, res) {
+  console.log("Hahahaha");
   let SQL="SELECT * FROM ProjectInfo";
   connection.query(SQL, function(err, results, fields){
     if(err) console.log(err);
