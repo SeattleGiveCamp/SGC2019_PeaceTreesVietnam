@@ -22,6 +22,8 @@ export default class OrdnanceForm extends React.Component {
     this.handleSubcategoryChange = this.handleSubcategoryChange.bind(this);
     this.handleLatChange = this.handleLatChange.bind(this);
     this.handleLongChange = this.handleLongChange.bind(this);
+
+    this.submitOrdnance = this.submitOrdnance.bind(this);
   }
 
   handleLocationChange(e) {
@@ -48,6 +50,10 @@ export default class OrdnanceForm extends React.Component {
 
   handleLongChange(e) {
     this.setState({long: e.value});
+  }
+
+  submitOrdnance(e) {
+    alert("Submitted ordnance");
   }
 
   render() {
@@ -87,6 +93,10 @@ export default class OrdnanceForm extends React.Component {
           <label>Long:
             <input type="number" min="-180" max="180" value={this.state.long} onChange={this.handleLongChange} />
           </label>
+        </div>
+
+        <div>
+          <button type="submit" onClick={this.submitOrdnance}>Add</button>
         </div>
         </form>
       </div>
