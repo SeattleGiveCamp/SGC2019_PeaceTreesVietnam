@@ -72,16 +72,26 @@ export default class ProjectForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: 'Select a Category'
+      selectedValue: 'Select a Category',
+      hasChildren: false
     };
   }
 
-  handleSelectChange = selectedValue => {
+  handleSelectChange = (selectedValue, hasChildren) => {
     this.setState({
-      selectedValue: selectedValue
+      selectedValue: selectedValue,
+      hasChildren: hasChildren
     });
+    console.log(hasChildren, 'hasChildren');
+  };
 
-    console.log(selectedValue, 'selectedValue');
+  showStudents = () => {
+    return (
+      <div>
+        <label>Number of Students</label>
+        <input type='number'></input>
+      </div>
+    );
   };
 
   render() {
@@ -112,16 +122,12 @@ export default class ProjectForm extends React.Component {
               <label>Type of Project</label>
               {/* TODO: Allow Multiple Selections */}
               <DynamicSelect
+                name={'projectType'}
                 arrayOfData={arrayOfProjectCategories}
                 onSelectChange={this.handleSelectChange}
-              />{' '}
+              />
             </div>
-            <div>
-              {/* TODO: Only Show this div if school is selected as a category */}
-              {/* TODO: Ask client if any other project types have students */}
-              <label>Number of Students</label>
-              <input type='number'></input>
-            </div>
+            {this.state.hasChildren ? this.showStudents() : undefined}
             <div className='description-area'>
               <label>Project Description</label>
               <textarea></textarea>
@@ -129,9 +135,10 @@ export default class ProjectForm extends React.Component {
             <div>
               <label>Sponsors</label>
               <DynamicSelect
+                name={'sponsors'}
                 arrayOfData={arrayOfSponsors}
                 onSelectChange={this.handleSelectChange}
-              />{' '}
+              />
             </div>
             <div>
               <label>Dedicated To</label>
@@ -140,6 +147,7 @@ export default class ProjectForm extends React.Component {
             <div>
               <label>Current Status</label>
               <DynamicSelect
+                name={'projectStatus'}
                 arrayOfData={arrayOfProjStatus}
                 onSelectChange={this.handleSelectChange}
               />{' '}
