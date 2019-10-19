@@ -19,19 +19,26 @@ export default class AdminPage extends React.Component {
     reader.onload =  function(e) {
       var text = reader.result;
 
+      // Convert our file to an XML dom
       var parser = new DOMParser();
       var xmldom = parser.parseFromString(text, "text/xml");
 
+      // Read our XML file as JSON
       var geoJsonData = kml(xmldom);
-      console.log(geoJsonData);
 
+      // We need to do some additional work to "fully" convert the `geoJsonData` to JSON.
+      
       for (var featureNum in geoJsonData.features) {
         var feature = geoJsonData.features[featureNum];
         if (!feature) { continue; }
 
+        // In geoJsonData.features array, each element (object) has a `.properties.description` string containing raw HTML
+        // Parse that raw HTML string into an actual JS DOM object
         var propertiesDom = window.document.createRange().createContextualFragment(feature.properties.description);
+        // We want to convert the table rows to JSON
         var tableRows = propertiesDom.querySelectorAll("table tr");
 
+        // And this JSON will be stored under a new key, `parsedProperties`
         geoJsonData.features[featureNum].parsedProperties = {}
 
         for (var rowNum in tableRows) {
@@ -50,14 +57,18 @@ export default class AdminPage extends React.Component {
           var dataPointLabel = dataPoints[0].textContent;
           var dataPointValue = dataPoints[1].textContent;
 
+          // We add a key-value pair in the format:
+          // {label: value} as defined above
           geoJsonData.features[featureNum].parsedProperties[dataPointLabel] = dataPointValue;
         }
       }
 
       console.log("Able to read all of the table data");
+      // This is the final data, which shall be processed further once we move this code to the server.
       console.log(geoJsonData);
-
     }
+
+    // Read the uploaded file as text
     reader.readAsText(e.target.files[0]);
   }
 
