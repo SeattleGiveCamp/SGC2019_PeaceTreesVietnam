@@ -2,6 +2,31 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import {Component} from 'react';
+import ReactMapGL from 'react-map-gl';
+
+class Map extends Component {
+
+  state = {
+    viewport: {
+      width: 400,
+      height: 400,
+      latitude: 37.7577,
+      longitude: -122.4376,
+      zoom: 8
+    }
+  };
+
+  render() {
+    return (
+      <ReactMapGL
+        {...this.state.viewport}
+        onViewportChange={(viewport) => this.setState({viewport})}
+      />
+    );
+  }
+}
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +44,8 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <Map></Map>
     </div>
   );
 }
