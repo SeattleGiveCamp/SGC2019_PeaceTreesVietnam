@@ -8,7 +8,14 @@ class DynamicSelect extends Component {
   //On the change event for the select box pass the selected value back to the parent
   handleChange = event => {
     let selectedValue = event.target.value;
-    this.props.onSelectChange(selectedValue);
+    let hasChildren = false;
+    this.props.onSelectChange(selectedValue, hasChildren);
+
+    if (selectedValue === '3 - Kindergarten') {
+      console.log('i match');
+      hasChildren = true;
+      this.props.onSelectChange(selectedValue, hasChildren);
+    }
   };
 
   render() {
@@ -25,7 +32,7 @@ class DynamicSelect extends Component {
         className='custom-search-select'
         onChange={this.handleChange}
       >
-        <option>Select Item</option>
+        <option>Select a Category</option>
         {options}
       </select>
     );
