@@ -10,14 +10,10 @@ var connection = mysql.createConnection({
 });
 
 const app = express();
-
 connection.connect();
-
-app.get("/", (req, res)=>{res.send("Hellow world!")});
-app.get("/test", getData);
+app.get("/", getData);
 
 function getData(req, res) {
-  console.log("Hahahaha");
   let SQL="SELECT * FROM ProjectInfo";
   connection.query(SQL, function(err, results, fields){
     if(err) console.log(err);
