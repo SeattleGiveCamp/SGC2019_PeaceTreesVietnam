@@ -5,6 +5,8 @@ import MapPage from "./MapPage/MapPage";
 import Login from "./Login/Login";
 import Form from "./Form/Form";
 import ErrorPage from "./ErrorPage/ErrorPage";
+import OrdnancePage from "./OrdnancePage/OrdnancePage";
+import AdminPage from "./AdminPage/AdminPage";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/login" component={Login}></Route>
         <Route path="/form" component={Form}></Route>
         <Route path="/error" component={ErrorPage}></Route>
+        <Route path="/ordnance" component={OrdnancePage}></Route>
+        <Route path="/admin" component={AdminPage}></Route>
       </BrowserRouter>
     </div>
   );
