@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "../styles/App.css";
 import MapPage from "./MapPage/MapPage";
 import Login from "./Login/Login";
+import Form from "./Form/Form";
+import ErrorPage from "./ErrorPage/ErrorPage";
 
 function App() {
   return (
