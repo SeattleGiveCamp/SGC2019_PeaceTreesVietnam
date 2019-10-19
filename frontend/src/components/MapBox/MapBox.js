@@ -10,8 +10,8 @@ export default class MapBox extends Component {
       viewport: {
         width: 960,
         height: 600,
-        latitude: 16.4,
-        longitude: 106,
+        latitude: 16.6,
+        longitude: 106.4,
         zoom: 8
       },
       selectedZone: null
@@ -26,7 +26,8 @@ export default class MapBox extends Component {
         name: "John C Seel Kindergarten",
         year: 2018,
         province: "Xi Ra Man Village",
-        sponsors: "Robert and Barbara Spindel"
+        sponsors: "Robert and Barbara Spindel",
+        type: "Kindergarten"
       },
       {
         lat: 16.483,
@@ -34,7 +35,8 @@ export default class MapBox extends Component {
         name: "David Warner Kindergarten",
         year: 2007,
         province: "Amor Village",
-        sponsors: "Sue Warner-Bean"
+        sponsors: "Sue Warner-Bean",
+        type: "Kindergarten"
       },
       {
         lat: 16.486,
@@ -42,7 +44,8 @@ export default class MapBox extends Component {
         name: "Friendship Force Library",
         year: 2009,
         province: "A Xing Commune",
-        sponsors: "Friendship Force International"
+        sponsors: "Friendship Force International",
+        type: "Library"
       },
       {
         lat: 16.6,
@@ -50,9 +53,29 @@ export default class MapBox extends Component {
         name: "Jesse Griego Kindergarten",
         year: 2009,
         province: "A Cha Village",
-        sponsors: "Jim Lewis"
+        sponsors: "Jim Lewis",
+        type: "Kindergarten"
+      },
+      {
+        lat: 16.71025,
+        lng: 106.878101,
+        name: "Heathful Garden for Healthy Children",
+        year: 2010,
+        province: "Krong Kiang Town",
+        sponsors: "Washington Women's Foundation",
+        type: "Economic Development Project"
+      },
+      {
+        lat: 16.630956,
+        lng: 107.011278,
+        name: "Ba Long Community Center",
+        year: 2014,
+        province: "Ba Long District",
+        sponsors: "",
+        type: "Community Project"
       }
     ];
+
     return coordinates;
   };
 
@@ -66,7 +89,19 @@ export default class MapBox extends Component {
 
   render() {
     const MAPBOX_URL = process.env.REACT_APP_MAPBOX;
-    const projects = this.getAllProjectCoordinates();
+    let projects = this.getAllProjectCoordinates();
+
+    if (this.props.projectShown) {
+      projects = projects.filter(project =>
+        this.props.projectShown.includes(project.type)
+      );
+    }
+
+    const getIconType = iconType => {
+      const projectType = this.props.types.find(el => el.type === iconType);
+      return projectType.icon;
+    };
+
     return (
       <div>
         {this.state.selectedZone ? (
@@ -86,7 +121,9 @@ export default class MapBox extends Component {
           {projects.map((zone, index) => {
             return (
               <Marker latitude={zone.lat} longitude={zone.lng} key={index}>
-                <Icon onClick={() => this.handleClick(zone)}>star</Icon>
+                <Icon onClick={() => this.handleClick(zone)}>
+                  {getIconType(zone.type)}
+                </Icon>
               </Marker>
             );
           })}
