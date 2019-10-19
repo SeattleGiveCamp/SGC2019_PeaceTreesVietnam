@@ -15,45 +15,43 @@ export default class AdminPage extends React.Component {
 
     var reader = new FileReader();
 
+    // When our uploaded file is done reading, execute this callback
     reader.onload =  function(e) {
       var text = reader.result;
 
       var parser = new DOMParser();
       var xmldom = parser.parseFromString(text, "text/xml");
 
-      console.log("we are done.");
-      
-
       var geoJsonData = kml(xmldom);
       console.log(geoJsonData);
 
-      // COMPLETE POC BEYO;nDTHI SPOINT
+      for (var featureNum in geoJsonData.features) {
+        var feature = geoJsonData.features[featureNum];
+        if (!feature) { continue; }
 
-      var firstPointDataDOM = window.document.createRange().createContextualFragment(geoJsonData.features[0].properties.description);
-      geoJsonData.features[0].parsedProperties = {}
+        var propertiesDom = window.document.createRange().createContextualFragment(feature.properties.description);
+        var tableRows = propertiesDom.querySelectorAll("table tr");
 
+        geoJsonData.features[featureNum].parsedProperties = {}
 
-      var tableRows = firstPointDataDOM.querySelectorAll("table tr");
-      
+        for (var rowNum in tableRows) {
+          var tableRow = tableRows[rowNum];
+          if (!tableRow || !(tableRow instanceof Node)) { continue; }
+          var dataPoints = tableRow.querySelectorAll("td");
+          // Format of table row should be:
+          // <tr>
+          //   <td>Label</td>
+          //   <td>Value</td>
+          // </tr>
+          if (dataPoints.length != 2) {
+            continue;
+          }
 
-      for (var rowNum in tableRows) {
-        var tableRow = tableRows[rowNum];
-        if (!tableRow || !(tableRow instanceof Node)) { continue; }
-        var dataPoints = tableRow.querySelectorAll("td");
-        // Format of table row should be:
-        // <tr>
-        //   <td>Label</td>
-        //   <td>Value</td>
-        // </tr>
-        if (dataPoints.length != 2) {
-          continue;
+          var dataPointLabel = dataPoints[0].textContent;
+          var dataPointValue = dataPoints[1].textContent;
+
+          geoJsonData.features[featureNum].parsedProperties[dataPointLabel] = dataPointValue;
         }
-
-        var dataPointLabel = dataPoints[0].textContent;
-        var dataPointValue = dataPoints[1].textContent;
-
-        
-        geoJsonData.features[0].parsedProperties[dataPointLabel] = dataPointValue;
       }
 
       console.log("Able to read all of the table data");
