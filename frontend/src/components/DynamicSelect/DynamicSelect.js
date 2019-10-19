@@ -25,7 +25,7 @@ class DynamicSelect extends Component {
         className='custom-search-select'
         onChange={this.handleChange}
       >
-        <option>Select Item</option>
+        <option>Select a Category</option>
         {options}
       </select>
     );
