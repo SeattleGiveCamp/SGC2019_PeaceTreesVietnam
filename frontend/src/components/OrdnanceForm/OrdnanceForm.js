@@ -71,6 +71,7 @@ export default class OrdnanceForm extends React.Component {
           <label>
             Category:
             <DynamicSelect
+              name={'ordnance-category'}
               arrayOfData={this.categories}
               onSelectChange={this.handleCategoryChange} />
           </label>
@@ -80,6 +81,7 @@ export default class OrdnanceForm extends React.Component {
           <label>
             Sub-category:
             <DynamicSelect
+              name={'ordnance-subcategory'}
               arrayOfData={this.subcategories}
               onSelectChange={this.handleSubcategoryChange} />
           </label>
