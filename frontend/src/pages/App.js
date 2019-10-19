@@ -1,12 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import '../styles/App.css';
 
-import {Component} from 'react';
+import { Component } from 'react';
 import ReactMapGL from 'react-map-gl';
 
 class Map extends Component {
-
   state = {
     viewport: {
       width: 400,
@@ -21,7 +20,7 @@ class Map extends Component {
     return (
       <ReactMapGL
         {...this.state.viewport}
-        onViewportChange={(viewport) => this.setState({viewport})}
+        onViewportChange={viewport => this.setState({ viewport })}
       />
     );
   }
@@ -29,17 +28,15 @@ class Map extends Component {
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         Whats up people
-        </p> 
+    <div className='App'>
+      <header className='App-header'>
+        <img src={logo} className='App-logo' alt='logo' />
+        <p>Whats up people</p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          className='App-link'
+          href='https://reactjs.org'
+          target='_blank'
+          rel='noopener noreferrer'
         >
           Learn React
         </a>
