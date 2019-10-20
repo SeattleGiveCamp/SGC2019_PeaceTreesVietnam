@@ -30,6 +30,7 @@
         border: none;
         display: flex;
         flex-direction: row;
+        box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
         figure {
           border: thin #c0c0c0 solid;
           display: flex;
@@ -40,7 +41,7 @@
 
           img {
               max-width: 650px;
-              max-height: 650px;
+              min-height: 620px;
           }
 
           figcaption {
@@ -87,12 +88,33 @@
       }
       
     }
+    
+    .map-box-img-container {
+      width: 60%;
+    }
+
     .note {
       width: 70vw;
       background-color: rgb(180, 180, 180);
       padding: 2rem;
       box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
       margin-left: 4rem;
+      
+      #example {
+        background-color:  rgb(73, 73, 73);
+        color: white;
+        padding: 2rem;
+        margin: 0 4rem;
+        text-align: center;
+      }
+    }
+
+    #important {
+      background-color: rgb(141, 17, 17);
+      color: white;
+    }
+    #mapbox-logo {
+      width: 10%;
     }
     }
       }

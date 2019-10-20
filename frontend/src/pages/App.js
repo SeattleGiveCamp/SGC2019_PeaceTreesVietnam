@@ -124,6 +124,7 @@ export default class App extends Component {
             <Route exact path="/manual" component={HowToPage}></Route>
           </Switch>
         </BrowserRouter>
+
         <Footer />
       </div>
     );

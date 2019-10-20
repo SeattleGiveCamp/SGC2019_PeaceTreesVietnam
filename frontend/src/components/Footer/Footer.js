@@ -1,12 +1,13 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Terms from "./Terms";
-import Privacy from "./Privacy";
-import Grid from "@material-ui/core/Grid";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Terms from './Terms';
+import Privacy from './Privacy';
+import Grid from '@material-ui/core/Grid';
+import logo from './resize_logo.png';
 
 const style = {
   fontSize: "20px",
@@ -37,37 +38,58 @@ export default function Footer() {
         style={{ background: "inherit", paddingTop: "20px" }}
       >
         <Toolbar>
-          <Grid container spacing={0}>
-            <Grid item sm={12} lg={3}>
-              <IconButton edge="start" color="inherit" aria-label="menu">
-                <a href="/">
-                  <img
-                    alt="PeaceTrees Vietnam"
-                    title="logo"
-                    src="https://cdn.firespring.com/images/c2e93d07-d2af-4746-8aaa-59cd79c932c2.png"
-                  />
-                </a>
-              </IconButton>
-            </Grid>
-            <Grid item sm={4} lg={3}>
-              <Typography className={classes.title} style={style}>
-                509 Olive Way
-                <br />
-                Suite 1226
-                <br />
-                Seattle, Washington 98101
-                <br />
-                (206) 441-6136
-                <br />
-                <a
-                  component="button"
-                  variant="body2"
-                  href="mailto:info@peacetreesvietnam.org"
-                  style={style}
-                  rel="noopener noreferrer"
-                >
-                  Contact
-                </a>
+         <Grid container spacing={0}>
+          <Grid item sm={12} lg={3}>
+            <IconButton edge="start" color="inherit" aria-label="menu" >
+              <a href="/"><img alt="PeaceTrees Vietnam" title="logo" src={logo}/></a>
+            </IconButton>
+          </Grid>
+          <Grid item sm={4} lg={3}>
+            <Typography className={classes.title} style={style}>
+              509 Olive Way
+              <br/>
+              Suite 1226
+              <br/>
+              Seattle, Washington 98101
+              <br/>
+              (206) 441-6136
+              <br/>
+              <a
+                component="button"
+                variant="body2"
+                href="mailto:info@peacetreesvietnam.org"
+                style={style}
+                rel="noopener noreferrer"
+              >
+                Contact
+              </a>
+            </Typography>
+          </Grid>
+          <Grid item sm={4} lg={3}>
+            <Typography variant="h6" className={classes.title} style={style}>
+              <a component="button"
+              variant="body2"
+              style={style}
+              href="https://www.peacetreesvietnam.org/how-to-help/volunteer.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Get Involved</a>
+              <br/>
+              <a component="button"
+              variant="body2"
+              style={style}
+              href="https://www.peacetreesvietnam.org/how-to-help/donate-form.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Donate Now</a>
+              <br/>
+              <a component="button"
+              variant="body2"
+              style={style}
+              href="https://www.peacetreesvietnam.org/news-events/event-calendar.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Upcoming Events</a>
               </Typography>
             </Grid>
             <Grid item sm={4} lg={3}>
