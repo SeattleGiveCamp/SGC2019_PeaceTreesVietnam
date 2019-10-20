@@ -108,6 +108,7 @@ export default class App extends Component {
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* <BrowserRouter> */}
         <Switch>
+
         <Route exact path='/' component={MapPage}></Route>
         {/* <Route exact path='/login' component={LoginForm}></Route> */}
         <Route exact path='/form' component={Form}></Route>

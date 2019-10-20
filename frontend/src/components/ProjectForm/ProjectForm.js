@@ -3,8 +3,7 @@ import formStyle from './project-form.module.scss';
 import DynamicSelect from '../../components/DynamicSelect/DynamicSelect';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import { shadows } from '@material-ui/system';
+
 // TODO: This is just test data, remove when can populate from database call.
 const arrayOfProjectCategories = [
   {
@@ -138,7 +137,10 @@ export default class ProjectForm extends React.Component {
   showYear = () => {
     return (
       <div>
+      <div style={{justifyContent: "flex-start"}}>
         <label>Year Completed</label>
+        </div>
+        <br/>
         <input
           name='completedYear'
           value={this.state.completedYear}
@@ -153,7 +155,10 @@ export default class ProjectForm extends React.Component {
   showPlanted = () => {
     return (
       <div>
+      <div style={{justifyContent: "flex-start"}}>
         <label>Year Planted</label>
+      </div>
+      <br/>
         <input
           name='plantedYear'
           value={this.state.plantedYear}
@@ -213,23 +218,20 @@ export default class ProjectForm extends React.Component {
                 placeholder="Longitude"
               ></input>
             </div>
+            <div style={{justifyContent: "flex-start"}}>
+            <label>Type of Project</label>
+            </div>
             <div>
-              <NativeSelect
-              name={'projectType'}
-              arrayOfData={arrayOfProjectCategories}
-              onSelectChange={this.handleSelectChange}
-              required
-              value={this.state.projectType}
-              onChange={this.handleChange}
-              placeholder="Type of Project"
-              >
-                <option value="">Project Type</option>
-                <option value={10}>Community Project</option>
-                <option value={20}>Library</option>
-                <option value={30}>Kindergarten</option>
-                <option value={30}>Economic Development Project</option>
-                <option value={30}>Other</option>
-              </NativeSelect>
+              <DynamicSelect
+                name={'projectType'}
+                id="projectType"
+                arrayOfData={arrayOfProjectCategories}
+                onSelectChange={this.handleSelectChange}
+                required
+                value={this.state.projectType}
+                onChange={this.handleChange}
+                placeholder="Type of Project"
+                />
             </div>
             <div className='description-area'>
               <textarea
@@ -256,8 +258,11 @@ export default class ProjectForm extends React.Component {
                 placeholder="Dedicated To"
               ></input>
             </div>
+            <div style={{justifyContent: "flex-start"}}>
+            <label>Current Status</label>
+            </div>
             <div>
-              <NativeSelect
+              <DynamicSelect
               name={'projectStatus'}
               arrayOfData={arrayOfProjStatus}
               onSelectChange={this.handleSelectChange}
@@ -266,14 +271,7 @@ export default class ProjectForm extends React.Component {
               onChange={this.handleChange}
               placeholder="Current Status"
               style={{margin: 0}}
-              >
-                <option value="">Current Status</option>
-                <option value={10}>Repurposed</option>
-                <option value={20}>Planned</option>
-                <option value={30}>Under Construction</option>
-                <option value={30}>Under Cultivation</option>
-                <option value={30}>Complete</option>
-              </NativeSelect>
+              />
             </div>
             {this.state.selectedValue === '5 - Complete'
               ? this.showYear()
