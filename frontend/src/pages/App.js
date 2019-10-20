@@ -9,6 +9,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import TablePage from './TablePage/TablePage';
 import AdminPage from './AdminPage/AdminPage';
+import HowToPage from './HowToPage/HowToPage';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route exact path='/error' component={ErrorPage}></Route>
           <Route exact path='/table' component={TablePage}></Route>
           <Route exact path='/admin' component={AdminPage}></Route>
+          <Route exact path='/manual' component={HowToPage}></Route>
         </Switch>
       </BrowserRouter>
       <Footer />
