@@ -19,14 +19,14 @@ class MapLegend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: []
+      checked: [1, 2, 3, 4, 5, null]
     };
   }
 
   handleChange = (value, index) => {
     if (!this.state.checked.length) {
       this.props.types.forEach((type, i) => {
-        this.state.checked[i] = type.type;
+        this.state.checked[i] = type.id;
         if (type.type === "Ordnance") {
           this.state.checked[i] = false;
         }
@@ -58,7 +58,7 @@ class MapLegend extends React.Component {
         <List dense={true}>
           {this.props.types.map((type, index) => {
             return (
-              <ListItem key={type.type}>
+              <ListItem key={type.id}>
                 <ListItemIcon>
                   <Icon>{type.icon}</Icon>
                 </ListItemIcon>
@@ -70,10 +70,9 @@ class MapLegend extends React.Component {
                         ? defaultState[index]
                         : this.isChecked(index)
                     }
-                    onChange={() => this.handleChange(type.type, index)}
+                    onChange={() => this.handleChange(type.id, index)}
                     value={type.type}
                     size="small"
-                    classes={styles.root}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
