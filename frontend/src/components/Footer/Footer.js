@@ -65,33 +65,6 @@ export default function Footer() {
               </a>
             </Typography>
           </Grid>
-          <Grid item sm={4} lg={3}>
-            <Typography variant="h6" className={classes.title} style={style}>
-              <a component="button"
-              variant="body2"
-              style={style}
-              href="https://www.peacetreesvietnam.org/how-to-help/volunteer.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Get Involved</a>
-              <br/>
-              <a component="button"
-              variant="body2"
-              style={style}
-              href="https://www.peacetreesvietnam.org/how-to-help/donate-form.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Donate Now</a>
-              <br/>
-              <a component="button"
-              variant="body2"
-              style={style}
-              href="https://www.peacetreesvietnam.org/news-events/event-calendar.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Upcoming Events</a>
-              </Typography>
-            </Grid>
             <Grid item sm={4} lg={3}>
               <Typography variant="h6" className={classes.title} style={style}>
                 <a
