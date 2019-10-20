@@ -118,7 +118,7 @@ export default class ProjectForm extends React.Component {
     formData.append('imageUrl', this.state.imageUrl);
     formData.append('pageUrl', this.state.pageUrl);
 
-    fetch('/error', {
+    fetch('https://ptbackendapp.herokuapp.com/', {
       method: 'POST',
 
       body: formData //data is an object
