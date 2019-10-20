@@ -48,8 +48,13 @@ export default class MapModal extends React.Component {
             | Location:&nbsp;
             <b>{this.props.zone.location}</b>
           </Typography>
+
+          <DialogContentText className="description">
+            {this.props.zone.description ||
+              "Check out our website to learn more about this project."}
+          </DialogContentText>
+
           <Typography variant="caption">
-            &nbsp;
             {this.props.zone.sponsors ? (
               <span>
                 Sponsors: <b> {this.props.zone.sponsors}</b>&nbsp;
@@ -57,20 +62,16 @@ export default class MapModal extends React.Component {
             ) : (
               undefined
             )}
+            <br />
             {this.props.zone.dedicatedTo ? (
               <span>
-                | Dedicated to
+                Dedicated to
                 <b> {this.props.zone.dedicatedTo}</b>
               </span>
             ) : (
               undefined
             )}
           </Typography>
-          <DialogContentText className="description">
-            {this.props.zone.description ||
-              "Check out our website to learn more about this project."}
-          </DialogContentText>
-
           <DialogActions>
             {this.props.zone.pageUrl ? (
               <Button

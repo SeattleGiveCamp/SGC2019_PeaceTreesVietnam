@@ -19,7 +19,6 @@ class MapBox extends Component {
       },
       selectedZone: null,
       mapStyle: "mapbox://styles/mapbox/streets-v11"
-
     };
   }
 
