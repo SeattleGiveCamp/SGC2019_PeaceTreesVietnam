@@ -1,6 +1,5 @@
 const express = require("express");
 const mysql = require("mysql");
-const cors = require("cors");
 require('dotenv').config();
 
 var connection = mysql.createConnection({
@@ -13,10 +12,6 @@ var connection = mysql.createConnection({
 
 const app = express();
 connection.connect();
-app.use(cors({
-  origin: '*',
-  credentials: true
-}));
 app.get("/", getProject);
 app.get("/Project", getProject);
 app.get("/Ordnance", getOrdnance);
