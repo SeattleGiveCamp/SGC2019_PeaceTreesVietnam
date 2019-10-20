@@ -7,6 +7,110 @@ export default class Howto extends React.Component {
       <div className='manual'>
         <h1>User Manual</h1>
         <div>
+          <h2>Table of Contents</h2>
+          <ul>
+            <li>
+              <a href='#purpose'>Application Purpose</a>
+            </li>
+            <li>
+              <a href='#current'>Current Application Capabilities</a>
+            </li>
+            <li>
+              <a href='#planned'>Planned Application Capabilities</a>
+            </li>
+            <li>
+              <a href='#docs'>Documentation Still Needed</a>
+            </li>
+            <li>
+              <a href='#page'>Get a Page URL</a>
+            </li>
+            <li>
+              <a href='#image'>Get an Image URL</a>
+            </li>
+            <li>
+              <a href='#mapbox'>Get a MapBox Token</a>
+            </li>
+          </ul>
+        </div>
+        <div id='purpose'>
+          <h2>Application Purpose</h2>
+          <p>
+            The purpose of this application is to provide an interactive map
+            interface for visitors and potential donors to the PeaceTree Vietnam
+            website. The map allows users to see where projects are located and
+            by clicking on the marker to see some information about the project
+            as a small pop-up window (modal) before having an option to go to a
+            more detailed project page.
+          </p>
+        </div>
+        <div id='current'>
+          <h2>Current Application Capabilities.</h2>
+          <ul>
+            <li>
+              The map and admin project tables can display project data that is
+              stored in the database.
+            </li>
+            <li>
+              Map markers use MapBox API to render a map and display markers on
+              a map.
+            </li>
+            <li>
+              A second map layer can be toggled to see location points where
+              ordnances have been removed and destroyed.
+            </li>
+            <li>
+              The user also has the capability to filter the visible results to
+              only show specific project types.
+            </li>
+            <li>
+              From an admin route, an admin user can view a table that shows
+              projects that are in the database.
+            </li>
+            <li>
+              A project input form has been created to allow the admin to fill
+              in new project information.
+            </li>
+            <li>
+              Application can upload a .kml (Unzipped Google Maps File) that
+              contains map data regarding destroyed ordnances.
+            </li>
+            <li>
+              The project input form dynamically shows fields depending on user
+              input for project status
+            </li>
+            <li>
+              MySQL database contains tables to store project information and
+              ordnance locations
+            </li>
+          </ul>
+        </div>
+        <div id='planned'>
+          <h2>Planned or in Progress Application Capabilities</h2>
+          <ul>
+            <li>
+              Additional functionality is needed to allow the form to insert
+              project information into the database
+            </li>
+            <li>
+              Implement user authorization (oauth) to protect the admin pages
+            </li>
+            <li>
+              Capability to be able to edit project details and delete projects
+              from the project table
+            </li>
+          </ul>
+        </div>
+        <div id='docs'>
+          <h2>Additional Documentation Needed</h2>
+          <ul>
+            <li>
+              How to restart the application via SSH to update MapBox tokens
+            </li>
+            <li>How to update SSL certificates</li>
+          </ul>
+          <p></p>
+        </div>
+        <div id='page'>
           <h2>Page URLs</h2>
           <p>
             If a page url is added when a new project is added to the database
@@ -85,7 +189,7 @@ export default class Howto extends React.Component {
             </figure>
           </section>
         </div>
-        <div>
+        <div id='image'>
           <h2>Image URLs</h2>
           <p>
             If an image url is added when a new project is added to the database
@@ -181,7 +285,7 @@ export default class Howto extends React.Component {
           </section>
           <section></section>
         </div>
-        <div>
+        <div id='mapbox'>
           <h2>Getting a MapBox Token</h2>
           <img
             src='https://raw.githubusercontent.com/eddyverbruggen/nativescript-mapbox/HEAD/screenshots/mapbox_logo.png'
