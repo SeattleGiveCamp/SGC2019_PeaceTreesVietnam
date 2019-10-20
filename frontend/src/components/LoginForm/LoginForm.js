@@ -6,8 +6,7 @@ export default class LoginForm extends Component {
   constructor() {
     super();
     this.state = { username: '',
-     password: '', 
-     confirmPassword: '',
+     password: '',
      redirectTo: null
   };
   this.handleSubmit = this.handleSubmit.bind(this)
@@ -24,7 +23,7 @@ export default class LoginForm extends Component {
 	console.log('handleSubmit')
 	this.props._login(this.state.username, this.state.password)
 	this.setState({
-		redirectTo: '/'
+		redirectTo: '/admin'
 	})
 }
 
