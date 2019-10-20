@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import "./LoginForm.scss";
+// import "./LoginForm.scss";
+import { FormControl, InputLabel, Button, Input } from '@material-ui/core'
 
 export default class LoginForm extends Component {
   constructor() {
@@ -33,24 +34,28 @@ render() {
 	} else {
 		return (
 			<div className="LoginForm">
-				<h1>Login form</h1>
-				<form>
-					<label htmlFor="username">Username: </label>
-					<input
+				<h1>Admin Login Form</h1>
+				<FormControl>
+					{/* <label htmlFor="username">Username: </label> */}
+					<InputLabel htmlFor="username">Username</InputLabel>
+					<Input
 						type="text"
 						name="username"
 						value={this.state.username}
 						onChange={this.handleChange}
 					/>
-					<label htmlFor="password">Password: </label>
-					<input
+					{/* <InputLabel htmlFor="password">Password</InputLabel> */}
+					<Input id="password" aria-describedby="password" />
+					<Input
 						type="password"
 						name="password"
 						value={this.state.password}
 						onChange={this.handleChange}
 					/>
-					<button onClick={this.handleSubmit}>Login</button>
-				</form>
+					
+					<Button color = 'primary' onClick={this.handleSubmit}>Login</Button>
+					</FormControl>
+
 			</div>
 		)
 	}

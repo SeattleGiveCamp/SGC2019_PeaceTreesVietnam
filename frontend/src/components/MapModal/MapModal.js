@@ -26,6 +26,18 @@ export default class MapModal extends React.Component {
     console.log("open new window with url");
   };
 
+
+  displayedData = () => {
+    return {
+      Year: this.props.zone.year,
+      Province: this.props.zone.province,
+      Sponsors: this.props.zone.sponsors,
+      Type: this.props.zone.type,
+      Link: this.props.zone.pageUrl
+    };
+  };
+
+
   render() {
     const image = this.props.zone.imageUrl || Logo;
     return (
@@ -66,6 +78,9 @@ export default class MapModal extends React.Component {
           </DialogContentText>
 
           <DialogActions>
+
+            <Button onClick={this.handleClick}><a href={this.props.zone.pageUrl}>Learn more</a></Button>
+
             {this.props.zone.pageUrl ? (
               <Button
                 onClick={this.handleClick}
@@ -77,6 +92,7 @@ export default class MapModal extends React.Component {
             ) : (
               undefined
             )}
+
           </DialogActions>
         </DialogContent>
       </Dialog>
