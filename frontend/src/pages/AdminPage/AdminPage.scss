@@ -1,0 +1,19 @@
+.upload {
+  border: 0;
+}
+.dashboard {
+  display: flex !important;
+  flex-flow: row wrap;
+  justify-content: center;
+
+  .card {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    text-align: left;
+    border: 1px solid lightgray;
+  }
+}
+a {
+  text-decoration: none;
+}

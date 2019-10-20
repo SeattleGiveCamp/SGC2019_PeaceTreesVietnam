@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
 import MapModal from "../MapModal/MapModal";
-import { Icon } from "@material-ui/core";
+import { IconButton, Icon } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as mapActions from "../../action/map-actions";
-import * as ordnanceActions from "../../action/ordnance-actions";
+import "./MapBox.scss";
 
 class MapBox extends Component {
   constructor(props) {
@@ -17,63 +17,64 @@ class MapBox extends Component {
         longitude: 106.4,
         zoom: 8
       },
-      selectedZone: null
+      selectedZone: null,
+      mapStyle: "mapbox://styles/xenalara/ck1ykgd854d521cmer7uz3hyf/draft"
     };
   }
 
   getAllProjectCoordinates = () => {
     const coordinates = [
       {
-        lat: 16.434,
-        lng: 106.72,
-        name: "John C Seel Kindergarten",
+        latitude: 16.434,
+        longitude: 106.72,
+        projectName: "John C Seel Kindergarten",
         year: 2018,
-        province: "Xi Ra Man Village",
+        location: "Xi Ra Man Village",
         sponsors: "Robert and Barbara Spindel",
         type: "Kindergarten"
       },
       {
-        lat: 16.483,
-        lng: 106.698,
-        name: "David Warner Kindergarten",
+        latitude: 16.483,
+        longitude: 106.698,
+        projectName: "David Warner Kindergarten",
         year: 2007,
-        province: "Amor Village",
+        location: "Amor Village",
         sponsors: "Sue Warner-Bean",
         type: "Kindergarten"
       },
       {
-        lat: 16.486,
-        lng: 106.702,
-        name: "Friendship Force Library",
+        latitude: 16.486,
+        longitude: 106.702,
+        projectName: "Friendship Force Library",
         year: 2009,
-        province: "A Xing Commune",
+        location: "A Xing Commune",
         sponsors: "Friendship Force International",
         type: "Library"
       },
       {
-        lat: 16.6,
-        lng: 106.63,
-        name: "Jesse Griego Kindergarten",
+        latitude: 16.6,
+        longitude: 106.63,
+        projectName: "Jesse Griego Kindergarten",
         year: 2009,
-        province: "A Cha Village",
+        location: "A Cha Village",
         sponsors: "Jim Lewis",
         type: "Kindergarten"
       },
       {
-        lat: 16.71025,
-        lng: 106.878101,
-        name: "Heathful Garden for Healthy Children",
+        latitude: 16.71025,
+        longitude: 106.878101,
+        projectName: "Heathful Garden for Healthy Children",
         year: 2010,
-        province: "Krong Kiang Town",
+        location: "Krong Kiang Town",
         sponsors: "Washington Women's Foundation",
         type: "Economic Development Project"
       },
       {
-        lat: 16.630956,
-        lng: 107.011278,
-        name: "Ba Long Community Center",
+        latitude: 16.630956,
+        longitude: 107.011278,
+        projectName: "Ba Long Community Center",
         year: 2014,
-        province: "Ba Long District",
+        location: "Ba Long District",
         sponsors: "",
         type: "Community Project"
       }
@@ -81,9 +82,6 @@ class MapBox extends Component {
 
     return coordinates;
   };
-
-  // This is meant to be more of an overlay; does not need to be clickable really
-  getAllOrdnanceCoordinates = () => {};
 
   handleClick = zone => {
     this.setState({ selectedZone: zone });
@@ -93,7 +91,7 @@ class MapBox extends Component {
     this.setState({ selectedZone: null });
   };
 
-  showOrdance = () => {
+  showOrdnance = () => {
     if (this.props.projectShown) {
       return this.props.projectShown.includes("Ordnance") ? true : false;
     }
@@ -112,8 +110,7 @@ class MapBox extends Component {
       ? this.props.ordnanceData
       : undefined;
 
-    const showOrdnance = this.showOrdance();
-
+    const showOrdnance = this.showOrdnance();
     const getIconType = iconType => {
       const projectType = this.props.types.find(el => el.type === iconType);
       return projectType.icon;
@@ -126,6 +123,7 @@ class MapBox extends Component {
             zone={this.state.selectedZone}
             open={this.state.selectedZone ? true : false}
             onClose={() => this.handleClose()}
+            getIcon={getIconType}
           />
         ) : (
           undefined
@@ -134,24 +132,36 @@ class MapBox extends Component {
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport })}
           mapboxApiAccessToken={MAPBOX_URL}
+          mapStyle={this.state.mapStyle}
         >
+          <div style={{ position: "absolute", right: 10, top: 10 }}>
+            <NavigationControl showCompass={false} />
+          </div>
           {projects.map((zone, index) => {
             return (
-              <Marker latitude={zone.lat} longitude={zone.lng} key={index}>
-                <Icon onClick={() => this.handleClick(zone)}>
-                  {getIconType(zone.type)}
-                </Icon>
+              <Marker
+                latitude={zone.latitude}
+                longitude={zone.longitude}
+                key={index}
+              >
+                <IconButton onClick={() => this.handleClick(zone)}>
+                  <Icon>{getIconType(zone.type)}</Icon>
+                </IconButton>
               </Marker>
             );
           })}
           {ordnanceData.length > 0 && showOrdnance
             ? ordnanceData.map((zone, index) => {
-                const lat = +zone.parsedProperties.Lat;
-                const lng = +zone.parsedProperties.Long;
                 return (
-                  <Marker latitude={lat} longitude={lng} key={index}>
+                  <Marker latitude={zone.lat} longitude={zone.long} key={index}>
                     <svg height="10" width="10">
-                      <circle cx="5" cy="5" r="4" fill="red" opacity="0.5" />
+                      <circle
+                        cx="5"
+                        cy="5"
+                        r="4"
+                        fill="#F50057"
+                        opacity="0.5"
+                      />
                     </svg>
                   </Marker>
                 );

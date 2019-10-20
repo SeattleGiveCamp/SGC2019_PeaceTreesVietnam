@@ -12,7 +12,6 @@ import Footer from '../components/Footer/Footer';
 import TablePage from './TablePage/TablePage';
 import AdminPage from './AdminPage/AdminPage';
 
-
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
@@ -105,7 +104,7 @@ export default class App extends Component {
 
 render(){
   return (
-    <div className='App'>
+    <div className="App">
       <Header />
       <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
       {/* <BrowserRouter> */}
