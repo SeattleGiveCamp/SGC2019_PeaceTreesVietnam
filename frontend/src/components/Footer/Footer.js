@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Terms from './Terms';
 import Privacy from './Privacy';
 import Grid from '@material-ui/core/Grid';
+import logo from './resize_logo.png';
 
 const style= {
   fontSize: "20px",
@@ -36,7 +37,7 @@ export default function Footer() {
          <Grid container spacing={0}>
           <Grid item sm={12} lg={3}>
             <IconButton edge="start" color="inherit" aria-label="menu" >
-              <a href="/"><img alt="PeaceTrees Vietnam" title="logo" src="https://cdn.firespring.com/images/c2e93d07-d2af-4746-8aaa-59cd79c932c2.png"/></a>
+              <a href="/"><img alt="PeaceTrees Vietnam" title="logo" src={logo}/></a>
             </IconButton>
           </Grid>
           <Grid item sm={4} lg={3}>

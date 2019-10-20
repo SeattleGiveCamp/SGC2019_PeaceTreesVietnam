@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect, Switch } from 'react-router-dom';
 import '../styles/App.css';
 import MapPage from './MapPage/MapPage';
 import LoginForm from '../components/LoginForm/LoginForm.js';
@@ -107,11 +107,10 @@ export default class App extends Component {
         <Header />
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* <BrowserRouter> */}
-        {/* <Switch> */}
+        <Switch>
         <Route exact path='/' component={MapPage}></Route>
         {/* <Route exact path='/login' component={LoginForm}></Route> */}
         <Route exact path='/form' component={Form}></Route>
-        <Route exact path='/error' component={ErrorPage}></Route>
         <Route exact path='/table' component={TablePage}></Route>
         <Route
           exact
@@ -126,7 +125,9 @@ export default class App extends Component {
         />
         <Route exact path='/signup' component={SignupForm} />
         <Route exact path='/manual' component={HowToPage}></Route>
-        {/* </Switch> */}
+        <Route exact path='/logout' render={() => <Redirect to="/"/>}/>
+        <Route component={ErrorPage}></Route>
+        </Switch>
         {/* </BrowserRouter> */}
         <Footer />
       </div>
