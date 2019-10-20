@@ -1,586 +1,630 @@
-import React from "react";
+import React, { Component } from "react";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
-const data = 
-[
+const data = [
   {
-    "number": 1,
-    "Project Name": {
-       "Type": " Danaan Perry Landmine Education Center "
+    number: 1,
+    ProjectName: {
+      Type: " Danaan Perry Landmine Education Center "
     },
     "Project Type": "Community Project",
-    "Completion": 1997,
-    "Location": "Lê Thánh Tông, Phường 3, Đông Hà, Quảng Trị, Vietnam",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/community-projects/danaan-parry-landmine-education-center.html",
+    Completion: 1997,
+    Location: "Lê Thánh Tông, Phường 3, Đông Hà, Quảng Trị, Vietnam",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/community-projects/danaan-parry-landmine-education-center.html",
     "Lat, Long": "16.803569, 107.080717",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 2,
-    "Project Name": {
-       "Type": "PeaceTrees Friendship Village"
+    number: 2,
+    ProjectName: {
+      Type: "PeaceTrees Friendship Village"
     },
     "Project Type": "Community Project",
-    "Completion": 2002,
-    "Location": "Section 8, Ward 5, Dong Ha city",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/community-projects/peacetrees-vietnam-friendship-village.html",
+    Completion: 2002,
+    Location: "Section 8, Ward 5, Dong Ha city",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/community-projects/peacetrees-vietnam-friendship-village.html",
     "Lat, Long": "16.802275, 107.089867",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 3,
-    "Project Name": {
-       "Type": "Friendship Village Kindergarten"
+    number: 3,
+    ProjectName: {
+      Type: "Friendship Village Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2002,
-    "Location": "Đông Hà, Quảng Trị ",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dash-friendship-kindergarten.html",
+    Completion: 2002,
+    Location: "Đông Hà, Quảng Trị ",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dash-friendship-kindergarten.html",
     "Lat, Long": "16.802, 107.091",
     "Sponsor(s)": "Karl Ege, Princeton Class of 1965",
-    "Dedication": "Dave Hackett & Steve Kelsey",
+    Dedication: "Dave Hackett & Steve Kelsey",
     "number of Students": 104,
-    "Notes": "Playground added in 2009. Part of larger Friendship Village project"
- },
+    Notes: "Playground added in 2009. Part of larger Friendship Village project"
+  },
   {
-    "number": 4,
-    "Project Name": {
-       "Type": "Women’s Library of Vĩnh Hòa Commune"
+    number: 4,
+    ProjectName: {
+      Type: "Women’s Library of Vĩnh Hòa Commune"
     },
     "Project Type": "Library",
-    "Completion": 2004,
-    "Location": "Vĩnh Hòa commune, Vĩnh Linh district",
+    Completion: 2004,
+    Location: "Vĩnh Hòa commune, Vĩnh Linh district",
     "Site link": "none",
     "Lat, Long": "17.053902, 107.053085",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 5,
-    "Project Name": {
-       "Type": "Women’s Library of Trung Giang Commune"
+    number: 5,
+    ProjectName: {
+      Type: "Women’s Library of Trung Giang Commune"
     },
     "Project Type": "Library",
-    "Completion": 2004,
-    "Location": "Trung Giang commune, Gio Linh district",
+    Completion: 2004,
+    Location: "Trung Giang commune, Gio Linh district",
     "Site link": "none",
     "Lat, Long": "16.988651, 107.106216",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 6,
-    "Project Name": {
-       "Type": "Women’s Library of Gio Viet Commune"
+    number: 6,
+    ProjectName: {
+      Type: "Women’s Library of Gio Viet Commune"
     },
     "Project Type": "Library",
-    "Completion": 2004,
-    "Location": "Cửa Việt townlet, Gio Linh district",
+    Completion: 2004,
+    Location: "Cửa Việt townlet, Gio Linh district",
     "Site link": "none",
     "Lat, Long": "16.902202, 107.176304",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 7,
-    "Project Name": {
-       "Type": "Women’s Library of Cam Tuyền Commune"
+    number: 7,
+    ProjectName: {
+      Type: "Women’s Library of Cam Tuyền Commune"
     },
     "Project Type": "Library",
-    "Completion": 2004,
-    "Location": "Cam Tuyền commune, Cam Lộ district",
+    Completion: 2004,
+    Location: "Cam Tuyền commune, Cam Lộ district",
     "Site link": "none",
     "Lat, Long": "16.815617, 106.980584",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 8,
-    "Project Name": {
-       "Type": "Women’s Library of Hải Vĩnh Commune"
+    number: 8,
+    ProjectName: {
+      Type: "Women’s Library of Hải Vĩnh Commune"
     },
     "Project Type": "Library",
-    "Completion": 2004,
-    "Location": "Hải Vĩnh commune, Hải Lăng district",
+    Completion: 2004,
+    Location: "Hải Vĩnh commune, Hải Lăng district",
     "Site link": "none",
     "Lat, Long": "16.748433, 107.269977",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 9,
-    "Project Name": {
-       "Type": "Hướng Tân Community Library"
+    number: 9,
+    ProjectName: {
+      Type: "Hướng Tân Community Library"
     },
     "Project Type": "Library",
-    "Completion": 2005,
-    "Location": "Hướng Tân Commune, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/huong-tan-community-library.html",
+    Completion: 2005,
+    Location: "Hướng Tân Commune, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/huong-tan-community-library.html",
     "Lat, Long": "16.663, 106.711",
     "Sponsor(s)": "Chuck Gaede",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": "Used by over 10,000 people a year. Emergency shelter for women and children. Playground added in 2010"
- },
+    Notes:
+      "Used by over 10,000 people a year. Emergency shelter for women and children. Playground added in 2010"
+  },
   {
-    "number": 10,
-    "Project Name": {
-       "Type": "Triệu Đông Kindergarten"
+    number: 10,
+    ProjectName: {
+      Type: "Triệu Đông Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2005,
-    "Location": "Triệu Đông Comm, QT",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/trieu-dong-kindergarten.html",
+    Completion: 2005,
+    Location: "Triệu Đông Comm, QT",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/trieu-dong-kindergarten.html",
     "Lat, Long": "16.786, 107.208",
     "Sponsor(s)": "Nike",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": "There were fewer students needing to be supported. Now used as a community center."
- },
+    Notes:
+      "There were fewer students needing to be supported. Now used as a community center."
+  },
   {
-    "number": 11,
-    "Project Name": {
-       "Type": "David Warner Kindergarten"
+    number: 11,
+    ProjectName: {
+      Type: "David Warner Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2007,
-    "Location": "Amor Village, A Xing Commune, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/david-warner-kindergarten.html",
+    Completion: 2007,
+    Location: "Amor Village, A Xing Commune, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/david-warner-kindergarten.html",
     "Lat, Long": "16.483, 106.698",
     "Sponsor(s)": "Sue Warner-Bean",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 48,
-    "Notes": "Playground added in 2009"
- },
+    Notes: "Playground added in 2009"
+  },
   {
-    "number": 12,
-    "Project Name": {
-       "Type": "Lao Bảo Library"
+    number: 12,
+    ProjectName: {
+      Type: "Lao Bảo Library"
     },
     "Project Type": "Library",
-    "Completion": 2008,
-    "Location": "Lao Bảo townlet, Tân Thành Comm, Hương Hóa Dist",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/lao-bao-library.html",
+    Completion: 2008,
+    Location: "Lao Bảo townlet, Tân Thành Comm, Hương Hóa Dist",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/lao-bao-library.html",
     "Lat, Long": "16.604, 106.63",
     "Sponsor(s)": "Chuck Gaede",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": "Playground added in 2010. Also a temp. women's shelter."
- },
+    Notes: "Playground added in 2010. Also a temp. women's shelter."
+  },
   {
-    "number": 13,
-    "Project Name": {
-       "Type": "Friendship Force Library"
+    number: 13,
+    ProjectName: {
+      Type: "Friendship Force Library"
     },
     "Project Type": "Library",
-    "Completion": 2009,
-    "Location": "A Xing Commune, Hương Hóa Dist",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friendship-force-library.html",
+    Completion: 2009,
+    Location: "A Xing Commune, Hương Hóa Dist",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friendship-force-library.html",
     "Lat, Long": "16.486, 106.702",
     "Sponsor(s)": "Friendship Force International",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": "Playground in 2010. Also a meeting center for Uxo education."
- },
+    Notes: "Playground in 2010. Also a meeting center for Uxo education."
+  },
   {
-    "number": 14,
-    "Project Name": {
-       "Type": "Jesse Griego Kindergarten"
+    number: 14,
+    ProjectName: {
+      Type: "Jesse Griego Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2009,
-    "Location": "A Cha Village, A Xing Commune, Hương Hóa District ",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/jesse-griego-kindergarten.html",
+    Completion: 2009,
+    Location: "A Cha Village, A Xing Commune, Hương Hóa District ",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/jesse-griego-kindergarten.html",
     "Lat, Long": "16.60, 106.63",
     "Sponsor(s)": "Jim Lewis",
-    "Dedication": "Jesse Griego (fallen marine of VN war)",
+    Dedication: "Jesse Griego (fallen marine of VN war)",
     "number of Students": 31,
-    "Notes": "Jim created his own fundraiser to raise money. Surpassed his goal enough to established a breakfast program and water well"
- },
+    Notes:
+      "Jim created his own fundraiser to raise money. Surpassed his goal enough to established a breakfast program and water well"
+  },
   {
-    "number": 15,
-    "Project Name": {
-       "Type": "Mother's Peace Library"
+    number: 15,
+    ProjectName: {
+      Type: "Mother's Peace Library"
     },
     "Project Type": "Library",
-    "Completion": 2010,
-    "Location": "Khe Da Village, Lao Bảo Townlet, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/mothers-peace-library.html",
+    Completion: 2010,
+    Location: "Khe Da Village, Lao Bảo Townlet, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/mothers-peace-library.html",
     "Lat, Long": "16.629, 106.597",
     "Sponsor(s)": "",
-    "Dedication": "\"Dedicated to all mothers who lost sons and daughters during the war.\" Recognizes the sacrifices made by the mothers of troops.",
+    Dedication:
+      '"Dedicated to all mothers who lost sons and daughters during the war." Recognizes the sacrifices made by the mothers of troops.',
     "number of Students": null,
-    "Notes": "Also a shelter for women, meeting space for community. "
- },
+    Notes: "Also a shelter for women, meeting space for community. "
+  },
   {
-    "number": 16,
-    "Project Name": {
-       "Type": "Dan Cheney Kindergarten"
+    number: 16,
+    ProjectName: {
+      Type: "Dan Cheney Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2010,
-    "Location": "Khe Da Village, Lao Bảo Townlet, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dan-cheney-kindergarten.html",
+    Completion: 2010,
+    Location: "Khe Da Village, Lao Bảo Townlet, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dan-cheney-kindergarten.html",
     "Lat, Long": "16.63, 106.60",
     "Sponsor(s)": "Rae and Dan Cheney",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 21,
-    "Notes": "Rae Cheney is Mother of Jerilyn Brusseau (cofounder) and Dan is Jerilyn's brother."
- },
+    Notes:
+      "Rae Cheney is Mother of Jerilyn Brusseau (cofounder) and Dan is Jerilyn's brother."
+  },
   {
-    "number": 17,
-    "Project Name": {
-       "Type": "Pat Lucero Library"
+    number: 17,
+    ProjectName: {
+      Type: "Pat Lucero Library"
     },
     "Project Type": "Library",
-    "Completion": 2010,
-    "Location": "Ba Lòng Commune, Đa Krông District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/pat-lucero-library.html",
+    Completion: 2010,
+    Location: "Ba Lòng Commune, Đa Krông District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/pat-lucero-library.html",
     "Lat, Long": "16.632, 107.014",
     "Sponsor(s)": "Jim Lewis and the Lucero Family",
-    "Dedication": "Pat Lucero",
+    Dedication: "Pat Lucero",
     "number of Students": null,
-    "Notes": "Also meeting place for community education. Received updated playground equip in 2012. "
- },
+    Notes:
+      "Also meeting place for community education. Received updated playground equip in 2012. "
+  },
   {
-    "number": 18,
-    "Project Name": {
-       "Type": "Heathful Garden for Healthy Children"
+    number: 18,
+    ProjectName: {
+      Type: "Heathful Garden for Healthy Children"
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2010,
-    "Location": "Krong Klang town, Dakrong district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
+    Completion: 2010,
+    Location: "Krong Klang town, Dakrong district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
     "Lat, Long": "16.71025, 106.878101",
     "Sponsor(s)": "Washington Women's Foundation",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 19,
-    "Project Name": {
-       "Type": "Heathful Garden for Healthy Children"
+    number: 19,
+    ProjectName: {
+      Type: "Heathful Garden for Healthy Children"
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2010,
-    "Location": "Mo O commune, Dakrong district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
+    Completion: 2010,
+    Location: "Mo O commune, Dakrong district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
     "Lat, Long": "16.67756, 106.903718",
     "Sponsor(s)": "Washington Women's Foundation",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 20,
-    "Project Name": {
-       "Type": "Peace and Reconciliation Library"
+    number: 20,
+    ProjectName: {
+      Type: "Peace and Reconciliation Library"
     },
     "Project Type": "Library",
-    "Completion": 2011,
-    "Location": "Nai Cuu Hamlet, Triệu Đông Comm, QT",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/peace-and-reconcilitation-library.html",
+    Completion: 2011,
+    Location: "Nai Cuu Hamlet, Triệu Đông Comm, QT",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/peace-and-reconcilitation-library.html",
     "Lat, Long": "16.784, 107.208",
     "Sponsor(s)": "Friends of Chuck Meadows",
-    "Dedication": "Chuck Meadows",
+    Dedication: "Chuck Meadows",
     "number of Students": null,
-    "Notes": "Chuck Meadows was a Executive Director for PTVN. Unfortunately passed away in March 2018"
- },
+    Notes:
+      "Chuck Meadows was a Executive Director for PTVN. Unfortunately passed away in March 2018"
+  },
   {
-    "number": 21,
-    "Project Name": {
-       "Type": "Bản Kè  Kindergarten "
+    number: 21,
+    ProjectName: {
+      Type: "Bản Kè  Kindergarten "
     },
     "Project Type": "Kindergarten",
-    "Completion": 2012,
-    "Location": "Bản Kè Village, Lâm Hóa commune, Tuyên Hóa District Quảng Bình Province",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ban-ke-kindergarten.html",
+    Completion: 2012,
+    Location:
+      "Bản Kè Village, Lâm Hóa commune, Tuyên Hóa District Quảng Bình Province",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ban-ke-kindergarten.html",
     "Lat, Long": "17.932, 105.802",
     "Sponsor(s)": "Ron Beman",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 25,
-    "Notes": "In Quảng Bình Province instead. We hope to expand there in the near future."
- },
+    Notes:
+      "In Quảng Bình Province instead. We hope to expand there in the near future."
+  },
   {
-    "number": 22,
-    "Project Name": {
-       "Type": "Hope Kindergarten "
+    number: 22,
+    ProjectName: {
+      Type: "Hope Kindergarten "
     },
     "Project Type": "Kindergarten",
-    "Completion": 2012,
-    "Location": "Hải Phúc Commune, Quảng Trị Province",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/hope-kindergarten.html",
+    Completion: 2012,
+    Location: "Hải Phúc Commune, Quảng Trị Province",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/hope-kindergarten.html",
     "Lat, Long": "16.616, 107.0398",
     "Sponsor(s)": "The Hope Project and Emily Fissel",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 23,
-    "Project Name": {
-       "Type": "Grace Kindergarten"
+    number: 23,
+    ProjectName: {
+      Type: "Grace Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2013,
-    "Location": "Khe Sanh townlet 5, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/grace-kindergarten.html",
+    Completion: 2013,
+    Location: "Khe Sanh townlet 5, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/grace-kindergarten.html",
     "Lat, Long": "16.617, 106.732",
     "Sponsor(s)": "Grace Episcopal Church",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 34,
-    "Notes": "Over the years, Grace Church has given over $63,000 in Grace Grants to PeaceTrees Vietnam"
- },
+    Notes:
+      "Over the years, Grace Church has given over $63,000 in Grace Grants to PeaceTrees Vietnam"
+  },
   {
-    "number": 24,
-    "Project Name": {
-       "Type": "Computer Lab at Hai Lai Secondary School"
+    number: 24,
+    ProjectName: {
+      Type: "Computer Lab at Hai Lai Secondary School"
     },
     "Project Type": "Community Project",
-    "Completion": 2013,
-    "Location": "Hải Phúc Commune, Quảng Trị Province",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/computer-lab-at-hai-lai-secondary-school.html",
+    Completion: 2013,
+    Location: "Hải Phúc Commune, Quảng Trị Province",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/computer-lab-at-hai-lai-secondary-school.html",
     "Lat, Long": "?",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": "Add on to Hai Lai Secondary School, which was built in 1975"
- },
+    Notes: "Add on to Hai Lai Secondary School, which was built in 1975"
+  },
   {
-    "number": 25,
-    "Project Name": {
-       "Type": "Sunflower Kindergarten"
+    number: 25,
+    ProjectName: {
+      Type: "Sunflower Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2014,
-    "Location": "Khe Sanh townlet 6, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/good-heart-kindergarten.html",
+    Completion: 2014,
+    Location: "Khe Sanh townlet 6, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/good-heart-kindergarten.html",
     "Lat, Long": "16.608, 106.731",
     "Sponsor(s)": "Mary Van Cleve",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 28,
-    "Notes": "Next to Khe Sanh Community Center"
- },
+    Notes: "Next to Khe Sanh Community Center"
+  },
   {
-    "number": 26,
-    "Project Name": {
-       "Type": "Mò ó Library - Lotus Friendship Library"
+    number: 26,
+    ProjectName: {
+      Type: "Mò ó Library - Lotus Friendship Library"
     },
     "Project Type": "Library",
-    "Completion": 2014,
-    "Location": "Krông Klang Township, Mò ó Commune, Đa Krông District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/mo-o-library.html",
+    Completion: 2014,
+    Location: "Krông Klang Township, Mò ó Commune, Đa Krông District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/mo-o-library.html",
     "Lat, Long": "16.685, 106.9",
-    "Sponsor(s)": "Jim Lewis, Diann Logie, Megan McCloskey, Joseph Rowe, Sue Warner-Bean, and Marci (Warner) Williams",
-    "Dedication": "US Marine Corp veteran Joe Rowe, passed in 2016",
+    "Sponsor(s)":
+      "Jim Lewis, Diann Logie, Megan McCloskey, Joseph Rowe, Sue Warner-Bean, and Marci (Warner) Williams",
+    Dedication: "US Marine Corp veteran Joe Rowe, passed in 2016",
     "number of Students": null,
-    "Notes": "Also houses Vietnam Women's Union. Local meeting hall, emergency shelter for women, playground, reading and working room"
- },
+    Notes:
+      "Also houses Vietnam Women's Union. Local meeting hall, emergency shelter for women, playground, reading and working room"
+  },
   {
-    "number": 27,
-    "Project Name": {
-       "Type": " Ba Long Community Center"
+    number: 27,
+    ProjectName: {
+      Type: " Ba Long Community Center"
     },
     "Project Type": "Community Project",
-    "Completion": 2014,
-    "Location": "Ba Long commune, Dakrong district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/community-projects/ba-long-community-center.html",
+    Completion: 2014,
+    Location: "Ba Long commune, Dakrong district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/community-projects/ba-long-community-center.html",
     "Lat, Long": "16.630956, 107.011278",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 28,
-    "Project Name": {
-       "Type": " Ba Long Resettlement Village"
+    number: 28,
+    ProjectName: {
+      Type: " Ba Long Resettlement Village"
     },
     "Project Type": "Community Project",
-    "Completion": 2014,
-    "Location": "Ha Vung village, Ba long commune, Dakrong district",
+    Completion: 2014,
+    Location: "Ha Vung village, Ba long commune, Dakrong district",
     "Site link": "none",
     "Lat, Long": "16.632473, 107.010382",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 29,
-    "Project Name": {
-       "Type": "Good Heart Kindergarten "
+    number: 29,
+    ProjectName: {
+      Type: "Good Heart Kindergarten "
     },
     "Project Type": "Kindergarten",
-    "Completion": 2015,
-    "Location": "Xi Nuc Village, Tân Long Commune, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friends-forever-kindergarten.html",
+    Completion: 2015,
+    Location: "Xi Nuc Village, Tân Long Commune, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friends-forever-kindergarten.html",
     "Lat, Long": "16.604, 106.649",
     "Sponsor(s)": "Hayward Family Foundation",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": 15,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 30,
-    "Project Name": {
-       "Type": "Black Pepper Project "
+    number: 30,
+    ProjectName: {
+      Type: "Black Pepper Project "
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2015,
-    "Location": "Tram village, Huong Tan commune, Huong Hoa district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/black-pepper-project.html",
+    Completion: 2015,
+    Location: "Tram village, Huong Tan commune, Huong Hoa district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/black-pepper-project.html",
     "Lat, Long": "16.664878, 106.713018",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 31,
-    "Project Name": {
-       "Type": "Black Pepper Project "
+    number: 31,
+    ProjectName: {
+      Type: "Black Pepper Project "
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2015,
-    "Location": "Con village, Tan Lap commune, Huong Hoa district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/black-pepper-project.html",
+    Completion: 2015,
+    Location: "Con village, Tan Lap commune, Huong Hoa district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/black-pepper-project.html",
     "Lat, Long": "16.606, 106.708822",
     "Sponsor(s)": "",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 32,
-    "Project Name": {
-       "Type": "Heathful Garden for Healthy Children"
+    number: 32,
+    ProjectName: {
+      Type: "Heathful Garden for Healthy Children"
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2017,
-    "Location": "Tram village, Huong Tan commune, Huong Hoa district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
+    Completion: 2017,
+    Location: "Tram village, Huong Tan commune, Huong Hoa district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
     "Lat, Long": "16.665696, 106.712713",
     "Sponsor(s)": "Seattle-area Rotary clubs and the Kirchoff Fitness Group",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 33,
-    "Project Name": {
-       "Type": "Heathful Garden for Healthy Children"
+    number: 33,
+    ProjectName: {
+      Type: "Heathful Garden for Healthy Children"
     },
     "Project Type": "Economic Development Project",
-    "Completion": 2017,
-    "Location": "Ruong village, Huong Hiep commune, Dakrong district",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
+    Completion: 2017,
+    Location: "Ruong village, Huong Hiep commune, Dakrong district",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/healthful-gardens-for-healthy-children.html",
     "Lat, Long": "16.74314, 106.85105",
     "Sponsor(s)": "Seattle-area Rotary clubs and the Kirchoff Fitness Group",
-    "Dedication": "",
+    Dedication: "",
     "number of Students": null,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 34,
-    "Project Name": {
-       "Type": "Friends Forever Kindergarten"
+    number: 34,
+    ProjectName: {
+      Type: "Friends Forever Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2017,
-    "Location": "Vay Village, Tân Long Commune, Hương Hóa District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friends-forever-kindergarten.html",
+    Completion: 2017,
+    Location: "Vay Village, Tân Long Commune, Hương Hóa District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/friends-forever-kindergarten.html",
     "Lat, Long": "16.604, 106.649",
-    "Sponsor(s)": "Bob Stokes and Sue Schroeter-Stokes, The Hayward Family Foundation, Quang Le",
-    "Dedication": "",
+    "Sponsor(s)":
+      "Bob Stokes and Sue Schroeter-Stokes, The Hayward Family Foundation, Quang Le",
+    Dedication: "",
     "number of Students": 55,
-    "Notes": "Expansion completed in October 2019 that allowed another 22 students to attend"
- },
+    Notes:
+      "Expansion completed in October 2019 that allowed another 22 students to attend"
+  },
   {
-    "number": 35,
-    "Project Name": {
-       "Type": "Ruộng Kindergarten"
+    number: 35,
+    ProjectName: {
+      Type: "Ruộng Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2017,
-    "Location": "Tân Ruộng Village, Hướng Tân Commune, Hương Hóa Dist.",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ruong-kindergarten.html",
+    Completion: 2017,
+    Location: "Tân Ruộng Village, Hướng Tân Commune, Hương Hóa Dist.",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ruong-kindergarten.html",
     "Lat, Long": "16.656, 106.685",
     "Sponsor(s)": "The Ransom Family. Gail and Larry Ransom",
-    "Dedication": "Robert Ransom Jr.",
+    Dedication: "Robert Ransom Jr.",
     "number of Students": 30,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 36,
-    "Project Name": {
-       "Type": "John C Seel Kindergarten"
+    number: 36,
+    ProjectName: {
+      Type: "John C Seel Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2018,
-    "Location": "Xi Ra Man Village, Xy Commune, Hương Hóa Dist.",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ra-man-kindergarten.html",
+    Completion: 2018,
+    Location: "Xi Ra Man Village, Xy Commune, Hương Hóa Dist.",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/ra-man-kindergarten.html",
     "Lat, Long": "16.434, 106.72",
     "Sponsor(s)": "Robert and Barbara Spindel",
-    "Dedication": "John C Seel",
+    Dedication: "John C Seel",
     "number of Students": 25,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 37,
-    "Project Name": {
-       "Type": "Arthur Bustamente Kindergarten"
+    number: 37,
+    ProjectName: {
+      Type: "Arthur Bustamente Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2018,
-    "Location": "Tà Liềng Village, Đa Krông District",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dakrong-kindergarten.html",
+    Completion: 2018,
+    Location: "Tà Liềng Village, Đa Krông District",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dakrong-kindergarten.html",
     "Lat, Long": "16.624, 106.861",
     "Sponsor(s)": "Jeff Nielsen",
-    "Dedication": "Arthur Bustamente",
+    Dedication: "Arthur Bustamente",
     "number of Students": 27,
-    "Notes": ""
- },
+    Notes: ""
+  },
   {
-    "number": 38,
-    "Project Name": {
-       "Type": "Dash Friendship Kindergarten"
+    number: 38,
+    ProjectName: {
+      Type: "Dash Friendship Kindergarten"
     },
     "Project Type": "Kindergarten",
-    "Completion": 2019,
-    "Location": "Bản Cốc Village, Hướng Linh Comm. Hương Hóa Dist.",
-    "Site link": "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dash-friendship-kindergarten.html",
+    Completion: 2019,
+    Location: "Bản Cốc Village, Hướng Linh Comm. Hương Hóa Dist.",
+    "Site link":
+      "https://www.peacetreesvietnam.org/what-we-do/education-and-economic-development/kindergartens/dash-friendship-kindergarten.html",
     "Lat, Long": "16.707, 106.776",
     "Sponsor(s)": "Rick and Karen McMichael",
-    "Dedication": "Dorothy \"Dash\" McMichael",
+    Dedication: 'Dorothy "Dash" McMichael',
     "number of Students": 24,
-    "Notes": ""
- }
- ].map(data => ({
-  value: data.number,
-  label: "[Completion: " + data.Completion + "] " + data.number,
- }));
+    Notes: ""
+  }
+].map(data => ({
+  value: data.ProjectName.Type
+  // label: "[Completion: " + data.ProjectName.Completion + "] " + data.number,
+}));
 
-  
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -634,24 +678,46 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+export default class SearchAppBar extends React.Component {
+  state = {
+    value: ""
+  };
 
-export default function SearchAppBar() {
-  
-  const classes = useStyles();
-  return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+  render() {
+    //Search functionality
+    function searchResult(textValue) {
+      let result = [];
+      //Once this function is trigged, hide all student items
+      const name = data.value;
+      if (this.state.value.length) {
+        for (let i = 0; i < name.length; i++) {
+          for (let j = 0; j < name[i].length; j++) {
+            let partialName = name[i].slice(j, this.state.value.length + j);
+            if (this.state.value !== partialName) continue;
+            else if (this.state.value === partialName) {
+              name[i].style.backgroundColor = "red";
+              result.push(name[i]);
+              break;
+            }
+          }
+        }
+      }
+      return result;
+    }
+    // const classes = useStyles();
+    return (
+      <div>
+        <div>
+          <SearchIcon />
+        </div>
+        <InputBase placeholder="Search…" name="value" onChange = {this.handleChange}/>
       </div>
-      <InputBase
-    
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput
-        }}
-        inputProps={{ "aria-label": "search" }}
-      />
-    </div>
-  );
+    );
+  }
 }
