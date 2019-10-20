@@ -15,7 +15,6 @@ export default class Howto extends React.Component {
             exist, it can be added later from the table view by clicking on the
             edit button.
           </p>
-          {/*TODO: insert a screenshot of on both modals. One without and one with a learn more button  */}
           <section id='learnmore-screenshot'>
             <figure>
               <img
@@ -85,17 +84,6 @@ export default class Howto extends React.Component {
               </figcaption>
             </figure>
           </section>
-          <section>
-            {/* <figure>
-              <img
-                src='https://via.placeholder.com/950'
-                alt='Edit a project url from the table'
-              />
-              <figcaption>
-                Page urls can be added on the table view page.
-              </figcaption>
-            </figure> */}
-          </section>
         </div>
         <div>
           <h2>Image URLs</h2>
@@ -103,14 +91,14 @@ export default class Howto extends React.Component {
             If an image url is added when a new project is added to the database
             the image will appear in the modal when a user clicks on one of the
             map project icons. If a page containing images for a project does
-            not currently exist, it can be added later from the table view by
+            not currently exist, a PeaceTrees Vietname logo will be added as a
+            placeholder until it can be added later from the table view by
             clicking on the edit button.
           </p>
-          {/*TODO: insert a screenshot of on both modals. One without and one with a learn more button  */}
           <section id='learnmore-screenshot'>
             <figure>
               <img
-                src='https://via.placeholder.com/650'
+                src='https://i.imgur.com/KsmJXnt.png?1'
                 alt='modal without an image'
               />
               <figcaption>
@@ -119,7 +107,7 @@ export default class Howto extends React.Component {
             </figure>
             <figure>
               <img
-                src='https://via.placeholder.com/650'
+                src='https://i.imgur.com/dOvHRIP.png'
                 alt='modal with an image'
               />
               <figcaption>
@@ -191,17 +179,7 @@ export default class Howto extends React.Component {
               </figcaption>
             </figure>
           </section>
-          <section>
-            {/* <figure>
-              <img
-                src='https://via.placeholder.com/950'
-                alt='Edit a project url from the table'
-              />
-              <figcaption>
-                Page urls can be added on the table view page.
-              </figcaption>
-            </figure> */}
-          </section>
+          <section></section>
         </div>
         <div>
           <h2>Getting a MapBox Token</h2>
