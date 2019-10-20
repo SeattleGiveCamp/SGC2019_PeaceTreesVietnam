@@ -1,0 +1,22 @@
+.mapModal {
+  max-width: 100%;
+  text-align: center;
+
+  img {
+    height: 200px;
+    object-fit: contain;
+  }
+}
+
+.MuiDialog-paperWidthSm {
+  max-width: 480px !important;
+}
+
+.accent {
+  color: #367c2b;
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 10px !important;
+}
