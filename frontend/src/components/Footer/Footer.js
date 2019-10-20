@@ -30,16 +30,16 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root} style={{position: "relative", top: "80vh", background: "black", margin: "auto 0"}}>
+    <div className={classes.root} style={{position: "relative", background: "black", margin: "auto 0"}}>
       <AppBar position="static" style={{background: "inherit", paddingTop: "20px"}}>
         <Toolbar>
          <Grid container spacing={0}>
-          <Grid item sm={12} md={3}>
+          <Grid item sm={12} lg={3}>
             <IconButton edge="start" color="inherit" aria-label="menu" >
               <a href="/"><img alt="PeaceTrees Vietnam" title="logo" src="https://cdn.firespring.com/images/c2e93d07-d2af-4746-8aaa-59cd79c932c2.png"/></a>
             </IconButton>
           </Grid>
-          <Grid item sm={4} md={3}>
+          <Grid item sm={4} lg={3}>
             <Typography className={classes.title} style={style}>
               509 Olive Way
               <br/>
@@ -60,7 +60,7 @@ export default function Footer() {
               </a>
             </Typography>
           </Grid>
-          <Grid item sm={4} md={3}>
+          <Grid item sm={4} lg={3}>
             <Typography variant="h6" className={classes.title} style={style}>
               <a component="button"
               variant="body2"
@@ -87,7 +87,7 @@ export default function Footer() {
               >Upcoming Events</a>
               </Typography>
            </Grid>
-           <Grid item sm={4} md={3}>
+           <Grid item sm={4} lg={3}>
             <Typography variant="h6" className={classes.title}>
               <a component="button"
               variant="body2"

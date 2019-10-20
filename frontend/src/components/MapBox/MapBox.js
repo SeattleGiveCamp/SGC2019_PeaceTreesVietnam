@@ -18,7 +18,8 @@ class MapBox extends Component {
         zoom: 8
       },
       selectedZone: null,
-      mapStyle: "mapbox://styles/xenalara/ck1ykgd854d521cmer7uz3hyf/draft"
+      mapStyle: "mapbox://styles/mapbox/streets-v11"
+
     };
   }
 
