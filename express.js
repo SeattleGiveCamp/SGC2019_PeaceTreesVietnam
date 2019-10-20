@@ -3,7 +3,7 @@ const mysql = require("mysql");
 require('dotenv').config();
 
 var connection = mysql.createConnection({
-  host: "138.68.241.63",
+  host: "localhost",
   user: "peacetrees_admin",
   password: process.env.MYSQL_ROOT_PASSWORD,
   database: "PeaceTrees_Vietnam",
