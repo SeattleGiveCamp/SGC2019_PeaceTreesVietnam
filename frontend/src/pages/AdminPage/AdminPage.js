@@ -1,22 +1,25 @@
 import React from "react";
 import { kml } from "./togeojson";
+import { connect } from "react-redux";
+import * as ordnanceActions from "../../action/ordnance-actions";
 
-export default class AdminPage extends React.Component {
-  state = {};
-
+class AdminPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleSelectedFile = this.handleSelectedFile.bind(this);
+    this.state = {
+      ordnanceData: null
+    };
   }
 
-  handleSelectedFile(e) {
+  handleSelectedFile = e => {
     console.log(e.target.files);
 
     var reader = new FileReader();
 
     // When our uploaded file is done reading, execute this callback
-    reader.onload =  function(e) {
+    reader.onload = e => {
       var text = reader.result;
 
       // Convert our file to an XML dom
@@ -27,23 +30,29 @@ export default class AdminPage extends React.Component {
       var geoJsonData = kml(xmldom);
 
       // We need to do some additional work to "fully" convert the `geoJsonData` to JSON.
-      
+
       for (var featureNum in geoJsonData.features) {
         var feature = geoJsonData.features[featureNum];
-        if (!feature) { continue; }
+        if (!feature) {
+          continue;
+        }
 
         // In geoJsonData.features array, each element (object) has a `.properties.description` string containing raw HTML
         // Parse that raw HTML string into an actual JS DOM object
-        var propertiesDom = window.document.createRange().createContextualFragment(feature.properties.description);
+        var propertiesDom = window.document
+          .createRange()
+          .createContextualFragment(feature.properties.description);
         // We want to convert the table rows to JSON
         var tableRows = propertiesDom.querySelectorAll("table tr");
 
         // And this JSON will be stored under a new key, `parsedProperties`
-        geoJsonData.features[featureNum].parsedProperties = {}
+        geoJsonData.features[featureNum].parsedProperties = {};
 
         for (var rowNum in tableRows) {
           var tableRow = tableRows[rowNum];
-          if (!tableRow || !(tableRow instanceof Node)) { continue; }
+          if (!tableRow || !(tableRow instanceof Node)) {
+            continue;
+          }
           var dataPoints = tableRow.querySelectorAll("td");
           // Format of table row should be:
           // <tr>
@@ -59,18 +68,22 @@ export default class AdminPage extends React.Component {
 
           // We add a key-value pair in the format:
           // {label: value} as defined above
-          geoJsonData.features[featureNum].parsedProperties[dataPointLabel] = dataPointValue;
+          geoJsonData.features[featureNum].parsedProperties[
+            dataPointLabel
+          ] = dataPointValue;
         }
       }
 
       console.log("Able to read all of the table data");
       // This is the final data, which shall be processed further once we move this code to the server.
       console.log(geoJsonData);
-    }
+      this.setState({ ordnanceData: geoJsonData.features });
+      this.props.postOrdnanceData(this.state.ordnanceData);
+    };
 
     // Read the uploaded file as text
     reader.readAsText(e.target.files[0]);
-  }
+  };
 
   render() {
     return (
@@ -84,3 +97,13 @@ export default class AdminPage extends React.Component {
     );
   }
 }
+
+// This upload will go to the DB eventually....
+const mapDispatchToProps = dispatch => ({
+  postOrdnanceData: data => dispatch(ordnanceActions.postOrdnanceData(data))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AdminPage);

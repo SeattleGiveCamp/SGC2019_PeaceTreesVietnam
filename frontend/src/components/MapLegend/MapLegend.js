@@ -44,7 +44,7 @@ export default class MapLegend extends React.Component {
         <Typography gutterBottom variant="h5" component="h2">
           Legend
         </Typography>
-        <List>
+        <List dense={true}>
           {this.props.types.map((type, index) => {
             return (
               <ListItem key={type.type}>

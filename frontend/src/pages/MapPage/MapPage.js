@@ -16,7 +16,8 @@ export default class Map extends React.Component {
       { type: "Kindergarten", icon: "school" },
       { type: "Library", icon: "local_library" },
       { type: "Economic Development Project", icon: "eco" },
-      { type: "Community Project", icon: "group" }
+      { type: "Community Project", icon: "group" },
+      { type: "Ordnance", icon: "" }
     ];
   };
 
@@ -28,6 +29,7 @@ export default class Map extends React.Component {
     const projectTypes = this.getProjectTypes();
     return (
       <main className="map">
+        <h1>Our Work</h1>
         <MapBox types={projectTypes} projectShown={this.state.filter} />
         <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
       </main>

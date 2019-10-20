@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import MapModal from "../MapModal/MapModal";
 import { Icon } from "@material-ui/core";
+import { connect } from "react-redux";
+import * as mapActions from "../../action/map-actions";
 
-export default class MapBox extends Component {
+class MapBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,6 +81,9 @@ export default class MapBox extends Component {
     return coordinates;
   };
 
+  // This is meant to be more of an overlay; does not need to be clickable really
+  getAllOrdnanceCoordinates = () => {};
+
   handleClick = zone => {
     this.setState({ selectedZone: zone });
   };
@@ -132,3 +137,19 @@ export default class MapBox extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    projects: state.projects
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  getAllProjects: () => dispatch(mapActions.getAllProjects())
+  // getAllOrdnances: () => dispatch(mapActions.getAllOrdnances())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MapBox);

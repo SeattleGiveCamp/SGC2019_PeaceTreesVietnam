@@ -40,7 +40,7 @@ export default class MapModal extends React.Component {
         <DialogContent>
           <DialogTitle>{this.props.zone.name}</DialogTitle>
 
-          <List>
+          <List dense={true}>
             {Object.keys(data).map(key => {
               return (
                 <ListItem>
