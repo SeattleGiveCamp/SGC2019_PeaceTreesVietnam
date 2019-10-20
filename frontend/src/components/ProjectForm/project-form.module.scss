@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    
+
     section {
         border: 1px solid grey;
         padding: 2rem;
@@ -18,7 +18,7 @@ body{
         margin: 0;
         padding: 0 0 1rem 0;
         text-align: center;
-        font-size: 3rem;
+        font-size: 2.5rem;
         }
 
         form {
@@ -34,7 +34,7 @@ body{
 
                 label {
                     margin-right: 1rem;
-                    width: 25vw; 
+                    width: 25vw;
                     font-weight: bold;
                     text-align: start;
                 }
@@ -45,13 +45,13 @@ body{
                     padding: .5rem;
                     font-size: 1rem;
                 }
-                
+
                 textarea {
                     height: 6rem;
                 }
-                
+
             }
-            
+
             button {
                 background-color: black;
                 color: white;
@@ -60,7 +60,6 @@ body{
                 margin-top: 2rem;
             }
         }
-        
+
     }
 }
-

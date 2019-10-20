@@ -1,6 +1,7 @@
 import superagent from "superagent";
 
-const API_URL = process.env.REACT_APP_API_KEY;
+const API_URL = process.env.REACT_APP_API_KEY || "http://138.68.241.63:3001";
+console.log(API_URL);
 
 export const addProject = project => store => {
   // Once we get a DB, it will connect here
@@ -20,80 +21,10 @@ export const get = projects => ({
 });
 
 export const getAllProjects = () => store => {
-  const MOCK_DATA = [
-    {
-      projectName: "Project 1",
-      projectStatus: "Complete",
-      location: "Somewhere, Someplace",
-      latitude: "123.456789",
-      longitude: "123.456789",
-      projectType: "Kindergarten",
-      description: "text here",
-      sponsors: "people",
-      dedicatedTo: "person",
-      completedYear: "2031",
-      plantedYear: "2050",
-      imageUrl: "link",
-      pageUrl: "link",
-      id: 1
-    },
-    {
-      projectName: "Project 2",
-      projectStatus: "Complete",
-      location: "Somewhere, Someplace",
-      latitude: "123.456789",
-      longitude: "123.456789",
-      projectType: "Kindergarten",
-      description: "text here",
-      sponsors: "people",
-      dedicatedTo: "person",
-      completedYear: "2031",
-      plantedYear: "2050",
-      imageUrl: "link",
-      pageUrl: "link",
-      id: 2
-    },
-    {
-      projectName: "Project 3",
-      projectStatus: "Complete",
-      location: "Somewhere, Someplace",
-      latitude: "123.456789",
-      longitude: "123.456789",
-      projectType: "Kindergarten",
-      description: "text here",
-      sponsors: "people",
-      dedicatedTo: "person",
-      completedYear: "2031",
-      plantedYear: "2050",
-      imageUrl: "link",
-      pageUrl: "link",
-      id: 3
-    },
-    {
-      projectName: "Project 4",
-      projectStatus: "Complete",
-      location: "Somewhere, Someplace",
-      latitude: "123.456789",
-      longitude: "123.456789",
-      projectType: "Kindergarten",
-      description: "text here",
-      sponsors: "people",
-      dedicatedTo: "person",
-      completedYear: "2031",
-      plantedYear: "2050",
-      imageUrl: "link",
-      pageUrl: "link",
-      id: 4
-    }
-  ];
-
-  // Using fake data for now
-  return store.dispatch(get(MOCK_DATA));
-
   // Once we get a DB, it will connect here.
-  // return superagent.get(`${API_URL}/Project`).then(response => {
-  //   return store.dispatch(get(response.data));
-  // });
+  return superagent.get(`${API_URL}/Project`).then(response => {
+    return store.dispatch(get(response.body));
+  });
 };
 
 export const updateProject = (newData, oldData) => store => {

@@ -23,23 +23,12 @@ export default class MapModal extends React.Component {
   };
 
   handleClick = () => {
-    console.log("open new window with url");
+    window.open(this.props.zone.pageUrl, "_blank");
   };
-
-
-  displayedData = () => {
-    return {
-      Year: this.props.zone.year,
-      Province: this.props.zone.province,
-      Sponsors: this.props.zone.sponsors,
-      Type: this.props.zone.type,
-      Link: this.props.zone.pageUrl
-    };
-  };
-
 
   render() {
     const image = this.props.zone.imageUrl || Logo;
+    console.log(this.props.zone);
     return (
       <Dialog open={this.props.open} onClose={this.handleClose}>
         <div className="mapModal">
@@ -48,39 +37,42 @@ export default class MapModal extends React.Component {
         <Divider />
         <DialogContent>
           <Typography variant="h5">
-            <Icon>{this.props.getIcon(this.props.zone.type)}</Icon>&nbsp;
+            <Icon>{this.props.getIcon(this.props.zone.projectType)}</Icon>&nbsp;
             {this.props.zone.projectName}
           </Typography>
 
           <Typography variant="caption">
-            <span className="accent">{this.props.zone.year} </span>
-            {this.props.zone.projectStatus} | Location:&nbsp;
-            <b>{this.props.zone.location}</b> |&nbsp;
+            <span className="accent">
+              {this.props.zone.completedYear || this.props.zone.plantedYear}{" "}
+            </span>
+            | Location:&nbsp;
+            <b>{this.props.zone.location}</b>
+          </Typography>
+
+          <DialogContentText className="description">
+            {this.props.zone.description ||
+              "Check out our website to learn more about this project."}
+          </DialogContentText>
+
+          <Typography variant="caption">
             {this.props.zone.sponsors ? (
               <span>
-                Sponsors: <b> {this.props.zone.sponsors}</b>
+                Sponsors: <b> {this.props.zone.sponsors}</b>&nbsp;
               </span>
             ) : (
               undefined
             )}
+            <br />
             {this.props.zone.dedicatedTo ? (
               <span>
-                | Dedicated to
+                Dedicated to
                 <b> {this.props.zone.dedicatedTo}</b>
               </span>
             ) : (
               undefined
             )}
           </Typography>
-          <DialogContentText className="description">
-            {this.props.zone.description ||
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."}
-          </DialogContentText>
-
           <DialogActions>
-
-            <Button onClick={this.handleClick}><a href={this.props.zone.pageUrl}>Learn more</a></Button>
-
             {this.props.zone.pageUrl ? (
               <Button
                 onClick={this.handleClick}
@@ -92,7 +84,6 @@ export default class MapModal extends React.Component {
             ) : (
               undefined
             )}
-
           </DialogActions>
         </DialogContent>
       </Dialog>

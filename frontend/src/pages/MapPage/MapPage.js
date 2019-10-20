@@ -15,11 +15,12 @@ export default class Map extends React.Component {
 
   getProjectTypes = () => {
     return [
-      { type: "Kindergarten", icon: "school" },
-      { type: "Library", icon: "local_library" },
-      { type: "Economic Development Project", icon: "eco" },
-      { type: "Community Project", icon: "group" },
-      { type: "Ordnance", icon: "" }
+      { type: "Community Project", icon: "group", id: 1 },
+      { type: "Library", icon: "local_library", id: 2 },
+      { type: "Kindergarten", icon: "school", id: 3 },
+      { type: "Economic Development Project", icon: "eco", id: 4 },
+      { type: "Other", icon: "fiber_manual_record", id: 5 },
+      { type: "Ordnance", icon: "", id: 6 }
     ];
   };
 
@@ -35,9 +36,6 @@ export default class Map extends React.Component {
         {/* <SearchAppBar /> */}
         <MapBox types={projectTypes} projectShown={this.state.filter} />
         <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
-
-        {/* This is temporary to test ordnances. Will remove once we get connected to a db */}
-        <AdminPage />
       </main>
     );
   }
