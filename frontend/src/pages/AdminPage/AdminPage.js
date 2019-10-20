@@ -54,8 +54,8 @@ class AdminPage extends React.Component {
 
         var coordinates = feature.geometry.coordinates;
 
-        var lat = +coordinates[0].toFixed(5);
-        var lon = +coordinates[1].toFixed(5);
+        var lon = +coordinates[0].toFixed(5);
+        var lat = +coordinates[1].toFixed(5);
 
         ordnanceList.push({ lat: lat, lon: lon });
       }
@@ -68,7 +68,9 @@ class AdminPage extends React.Component {
         csvContent += row + "\r\n";
       });
 
-      this.setState({ ordnanceData: ordnanceList });
+      ordnanceList.shift();
+      this.setState({ ordnanceList });
+      console.log(ordnanceList);
 
       // Create a link, and click it to download the data
       var element = window.document.createElement("a");
@@ -91,7 +93,6 @@ class AdminPage extends React.Component {
   uploadFile = () => {
     this.props.postOrdnanceData(this.state.ordnanceData);
     this.setState({ uploaded: true });
-    console.log(this.state);
   };
 
   render() {
