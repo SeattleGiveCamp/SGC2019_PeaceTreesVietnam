@@ -23,11 +23,12 @@ export default class MapModal extends React.Component {
   };
 
   handleClick = () => {
-    console.log("open new window with url");
+    window.open(this.props.zone.pageUrl, "_blank");
   };
 
   render() {
     const image = this.props.zone.imageUrl || Logo;
+    console.log(this.props.zone);
     return (
       <Dialog open={this.props.open} onClose={this.handleClose}>
         <div className="mapModal">
@@ -41,12 +42,17 @@ export default class MapModal extends React.Component {
           </Typography>
 
           <Typography variant="caption">
-            <span className="accent">{this.props.zone.year} </span>
-            {this.props.zone.projectStatus} | Location:&nbsp;
-            <b>{this.props.zone.location}</b> |&nbsp;
+            <span className="accent">
+              {this.props.zone.completedYear || this.props.zone.plantedYear}{" "}
+            </span>
+            | Location:&nbsp;
+            <b>{this.props.zone.location}</b>
+          </Typography>
+          <Typography variant="caption">
+            &nbsp;
             {this.props.zone.sponsors ? (
               <span>
-                Sponsors: <b> {this.props.zone.sponsors}</b>
+                Sponsors: <b> {this.props.zone.sponsors}</b>&nbsp;
               </span>
             ) : (
               undefined
@@ -62,11 +68,11 @@ export default class MapModal extends React.Component {
           </Typography>
           <DialogContentText className="description">
             {this.props.zone.description ||
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam."}
+              "Check out our website to learn more about this project."}
           </DialogContentText>
 
           <DialogActions>
-            {/* {this.props.zone.pageUrl ? (
+            {this.props.zone.pageUrl ? (
               <Button
                 onClick={this.handleClick}
                 variant="outlined"
@@ -76,7 +82,7 @@ export default class MapModal extends React.Component {
               </Button>
             ) : (
               undefined
-            )} */}
+            )}
           </DialogActions>
         </DialogContent>
       </Dialog>
