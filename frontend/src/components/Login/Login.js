@@ -1,26 +1,25 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
-import "./LoginForm.scss";
+import React, { Component } from 'react'
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
-export default class LoginForm extends React.Component {
-  constructor() {
-    super();
-    this.state = { username: '',
-     password: '', 
-     confirmPassword: '',
-     redirectTo: null
-  };
-  this.handleSubmit = this.handleSubmit.bind(this)
-  this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(event) {
+class SignupForm extends Component {
+	constructor() {
+		super()
+		this.state = {
+			username: '',
+			password: '',
+			confirmPassword: '',
+			redirectTo: null
+		}
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+	}
+	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
-  }
-  handleSubmit(event) {
+	}
+	handleSubmit(event) {
 		event.preventDefault()
 		// TODO - validate!
 		axios
@@ -40,15 +39,12 @@ export default class LoginForm extends React.Component {
 				}
 			})
 	}
-
-  render() {
-    
-
-    if (this.state.redirectTo) {
+	render() {
+		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
 		}
 		return (
-			<div className="LoginForm">
+			<div className="SignupForm">
 				<h1>Signup form</h1>
 				<label htmlFor="username">Username: </label>
 				<input
@@ -74,7 +70,7 @@ export default class LoginForm extends React.Component {
 				<button onClick={this.handleSubmit}>Sign up</button>
 			</div>
 		)
-  }
+	}
 }
 
-// export default LoginForm
+export default SignupForm
