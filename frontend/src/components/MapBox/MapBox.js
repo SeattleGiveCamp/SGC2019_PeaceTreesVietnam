@@ -4,6 +4,7 @@ import MapModal from "../MapModal/MapModal";
 import { IconButton, Icon } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as mapActions from "../../action/map-actions";
+import * as ordnanceActions from "../../action/ordnance-actions";
 import "./MapBox.scss";
 
 class MapBox extends Component {
@@ -13,9 +14,9 @@ class MapBox extends Component {
       viewport: {
         width: 960,
         height: 600,
-        latitude: 16.6,
-        longitude: 106.4,
-        zoom: 8
+        latitude: 16.7,
+        longitude: 107,
+        zoom: 8.5
       },
       selectedZone: null,
       mapStyle: "mapbox://styles/mapbox/streets-v11"
@@ -24,6 +25,7 @@ class MapBox extends Component {
 
   componentDidMount() {
     this.props.getAllProjects();
+    this.props.getAllOrdnances();
   }
 
   handleClick = zone => {
@@ -49,9 +51,11 @@ class MapBox extends Component {
         this.props.projectShown.includes(project.projectType)
       );
     }
+
     const ordnanceData = this.props.ordnanceData
       ? this.props.ordnanceData
       : undefined;
+    console.log(ordnanceData);
 
     const showOrdnance = this.showOrdnance();
     const getIconType = iconType => {
@@ -98,7 +102,7 @@ class MapBox extends Component {
           {ordnanceData.length > 0 && showOrdnance
             ? ordnanceData.map((zone, index) => {
                 return (
-                  <Marker latitude={zone.lat} longitude={zone.long} key={index}>
+                  <Marker latitude={zone.lat} longitude={zone.lon} key={index}>
                     <svg height="10" width="10">
                       <circle
                         cx="5"
@@ -124,8 +128,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllProjects: () => dispatch(mapActions.getAllProjects())
-  // getAllOrdnances: () => dispatch(mapActions.getAllOrdnances())
+  getAllProjects: () => dispatch(mapActions.getAllProjects()),
+  getAllOrdnances: () => dispatch(ordnanceActions.getAllOrdnances())
 });
 
 export default connect(
