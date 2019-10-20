@@ -19,9 +19,9 @@ export default function App() {
           <Route exact path='/map' component={MapPage}></Route>
           <Route exact path='/login' component={Login}></Route>
           <Route exact path='/form' component={Form}></Route>
-          <Route exact path='/error' component={ErrorPage}></Route>
           <Route exact path='/table' component={TablePage}></Route>
           <Route exact path='/admin' component={AdminPage}></Route>
+          <Route  component={ErrorPage}></Route>
         </Switch>
       </BrowserRouter>
       <Footer />
