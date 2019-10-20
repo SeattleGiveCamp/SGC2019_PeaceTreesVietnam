@@ -26,7 +26,7 @@ export default class MapModal extends React.Component {
     console.log("open new window with url");
   };
 
-<<<<<<< HEAD
+
   displayedData = () => {
     return {
       Year: this.props.zone.year,
@@ -37,8 +37,7 @@ export default class MapModal extends React.Component {
     };
   };
 
-=======
->>>>>>> a79fe4282c3578c9c3642190d6259c91f82fdbb4
+
   render() {
     const image = this.props.zone.imageUrl || Logo;
     return (
@@ -79,9 +78,9 @@ export default class MapModal extends React.Component {
           </DialogContentText>
 
           <DialogActions>
-<<<<<<< HEAD
+
             <Button onClick={this.handleClick}><a href={this.props.zone.pageUrl}>Learn more</a></Button>
-=======
+
             {this.props.zone.pageUrl ? (
               <Button
                 onClick={this.handleClick}
@@ -93,7 +92,7 @@ export default class MapModal extends React.Component {
             ) : (
               undefined
             )}
->>>>>>> a79fe4282c3578c9c3642190d6259c91f82fdbb4
+
           </DialogActions>
         </DialogContent>
       </Dialog>
