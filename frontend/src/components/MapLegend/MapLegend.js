@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as ordnanceActions from "../../action/ordnance-actions";
 import {
   Card,
   List,
@@ -12,7 +14,8 @@ import {
 } from "@material-ui/core";
 import "./MapLegend.scss";
 
-export default class MapLegend extends React.Component {
+const defaultState = [true, true, true, true, false];
+class MapLegend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,10 +25,12 @@ export default class MapLegend extends React.Component {
 
   handleChange = (value, index) => {
     if (!this.state.checked.length) {
-      this.props.types.forEach(
-        (type, i) => (this.state.checked[i] = type.type)
-      );
-      this.state.checked[index] = null;
+      this.props.types.forEach((type, i) => {
+        this.state.checked[i] = type.type;
+        if (type.type === "Ordnance") {
+          this.state.checked[i] = false;
+        }
+      });
     } else if (this.state.checked[index]) {
       this.state.checked[index] = null;
     } else {
@@ -44,7 +49,7 @@ export default class MapLegend extends React.Component {
         <Typography gutterBottom variant="h5" component="h2">
           Legend
         </Typography>
-        <List>
+        <List dense={true}>
           {this.props.types.map((type, index) => {
             return (
               <ListItem key={type.type}>
@@ -56,7 +61,7 @@ export default class MapLegend extends React.Component {
                   <Switch
                     checked={
                       this.state.checked.length === 0
-                        ? true
+                        ? defaultState[index]
                         : this.isChecked(index)
                     }
                     onChange={() => this.handleChange(type.type, index)}
@@ -72,3 +77,8 @@ export default class MapLegend extends React.Component {
     );
   }
 }
+
+export default connect(
+  null,
+  null
+)(MapLegend);

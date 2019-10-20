@@ -8,23 +8,21 @@ import Terms from './Terms';
 import Privacy from './Privacy';
 import Grid from '@material-ui/core/Grid';
 
-const style= {
+const style={
   fontSize: "20px",
   color: "white",
-  textDecoration: "none",
+  textDecoration: "none"
 };
-
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   title: {
     flexGrow: 1,
     color: "white"
-  },
+  }
 }));
-
 
 export default function Footer() {
   const classes = useStyles();
