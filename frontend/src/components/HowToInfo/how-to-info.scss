@@ -1,0 +1,98 @@
+.manual {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  margin: auto;
+
+    h1 {
+      font-size: 4rem;
+    }
+
+    div {
+      border: 1px solid black;
+      margin: 0 0 2rem 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      font-size: 2rem;
+      
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      section {
+        align-items: center;
+        border: none;
+        display: flex;
+        flex-direction: row;
+        figure {
+          border: thin #c0c0c0 solid;
+          display: flex;
+          flex-flow: column;
+          padding: 5px;
+          max-width: 650px;
+          margin: auto;
+
+          img {
+              max-width: 650px;
+              max-height: 650px;
+          }
+
+          figcaption {
+            background-color: #222;
+            color: #fff;
+            padding: 3px;
+            text-align: center;
+            font-size: 1rem;
+            font-style: italic;
+          }
+        }
+      }
+    .full-width-container {
+      margin: 0;
+      .single-image {
+        border: thin #c0c0c0 solid;
+        display: flex;
+        flex-flow: column;
+        padding: 5px;
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+        
+        img {
+          min-width: 100%;
+          object-fit: fill;
+        }
+        
+        figcaption {
+          background-color: #222;
+          color: #fff;
+          padding: 3px;
+          text-align: center;
+          font-size: 1rem;
+          font-style: italic;
+        }
+      }
+    }
+    .form-img-container {
+      width: 500px;
+      margin: auto;
+      #form-img {
+        min-width: 0%;
+      }
+      
+    }
+    .note {
+      width: 70vw;
+      background-color: rgb(180, 180, 180);
+      padding: 2rem;
+      box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+      margin-left: 4rem;
+    }
+    }
+      }
