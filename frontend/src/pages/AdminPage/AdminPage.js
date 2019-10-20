@@ -7,7 +7,6 @@ import * as ordnanceActions from "../../action/ordnance-actions";
 class AdminPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {kmzProgress: 0};
 
     this.handleSelectedFile = this.handleSelectedFile.bind(this);
     this.state = {
@@ -74,10 +73,6 @@ class AdminPage extends React.Component {
             dataPointLabel
           ] = dataPointValue;
         }
-
-        var kmzProgress = Math.ceil(100 * (featureNum / geoJsonData.features.length));
-        if (this.state.kmzProgress != kmzProgress) {
-          this.setState({kmzProgress: kmzProgress});
       }
 
       console.log("Able to read all of the table data");
@@ -94,7 +89,7 @@ class AdminPage extends React.Component {
       element.setAttribute('download', 'mine-data.json');
       
       element.click();
-    }.bind(this);
+    }
 
     // Read the uploaded file as text
     reader.readAsText(e.target.files[0]);
@@ -109,8 +104,6 @@ class AdminPage extends React.Component {
           <div>
           <input type="file" onChange={this.handleSelectedFile} accept="application/vnd.google-earth.kml+xml,application/vnd.google-earth.kmz" />
           </div>
-          
-          <progress value={this.state.kmzProgress} max="100"></progress> {this.state.kmzProgress} / 100
         </form>
 
         <hr />
