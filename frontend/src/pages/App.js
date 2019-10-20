@@ -7,7 +7,7 @@ import Form from './Form/Form';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import OrdnancePage from './OrdnancePage/OrdnancePage';
+import TablePage from './TablePage/TablePage';
 import AdminPage from './AdminPage/AdminPage';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route exact path='/login' component={Login}></Route>
           <Route exact path='/form' component={Form}></Route>
           <Route exact path='/error' component={ErrorPage}></Route>
-          <Route exact path='/ordnance' component={OrdnancePage}></Route>
+          <Route exact path='/table' component={TablePage}></Route>
           <Route exact path='/admin' component={AdminPage}></Route>
         </Switch>
       </BrowserRouter>
