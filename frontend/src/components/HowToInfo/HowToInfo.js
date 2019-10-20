@@ -19,7 +19,7 @@ export default class Howto extends React.Component {
           <section id='learnmore-screenshot'>
             <figure>
               <img
-                src='https://via.placeholder.com/650'
+                src='https://i.imgur.com/ITTtO4U.png'
                 alt='modal without learn more button'
               />
               <figcaption>
@@ -28,7 +28,7 @@ export default class Howto extends React.Component {
             </figure>
             <figure>
               <img
-                src='https://via.placeholder.com/650'
+                src='https://i.imgur.com/KsmJXnt.png'
                 alt='modal with a learn more button'
               />
               <figcaption>
@@ -205,18 +205,63 @@ export default class Howto extends React.Component {
         </div>
         <div>
           <h2>Getting a MapBox Token</h2>
+          <img
+            src='https://raw.githubusercontent.com/eddyverbruggen/nativescript-mapbox/HEAD/screenshots/mapbox_logo.png'
+            alt='mapBox logo'
+            id='mapbox-logo'
+          />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            tempor nunc at nulla auctor suscipit. Etiam turpis neque, malesuada
-            ut mi a, dapibus tempor ipsum. Sed congue neque non erat iaculis, in
-            congue risus viverra. Nunc ac vulputate est, at consequat turpis.
-            Suspendisse blandit ut enim a vestibulum. Phasellus eu sapien vel
-            metus lacinia commodo porttitor a mauris. Donec ut felis eleifend,
-            ullamcorper lorem non, gravida neque. Nam vel tincidunt tellus.
-            Donec laoreet sapien nec tempor pulvinar. Aliquam lorem neque,
-            placerat non enim vitae, faucibus convallis odio. Duis pharetra
-            semper purus quis vehicula. Integer congue vehicula tempus. Quisque
-            lorem arcu, efficitur id lectus sed, suscipit tristique nisl.
+            In order to display the map and location markers, the application
+            utilizes map tools from <a href='https://www.mapbox.com/'>MapBox</a>
+            , an open source mapping platform that allows for custom designed
+            maps.
+            <br />
+            <br />
+            In order to access their technology, an access token is required.
+            This has already been setup on original site launch but if for some
+            reason a new token is needed please follow the below instructions
+          </p>
+          <p>
+            Step 1: Go to <a href='https://www.mapbox.com.org/'>MapBox.com</a>{' '}
+            and navigate to your account
+          </p>
+          <section className='full-width-container form-img-container map-box-img-container'>
+            <figure className='single-image'>
+              <img
+                id='acct-img'
+                src='https://i.imgur.com/lcPrWBG.png'
+                alt='map-box-acct'
+              />
+              <figcaption>
+                Empty form example showing page and image url fields
+              </figcaption>
+            </figure>
+          </section>
+          <p>
+            Step 2: In the "Access Tokens" section at the bottom of the screen,
+            click "Refresh".
+          </p>
+          <section className='full-width-container form-img-container map-box-img-container'>
+            <figure className='single-image'>
+              <img
+                id='acct-img'
+                src='https://i.imgur.com/Rqba7W3.png'
+                alt='map-box-acct'
+              />
+              <figcaption>
+                Empty form example showing page and image url fields
+              </figcaption>
+            </figure>
+          </section>
+          <p className='note'>
+            Note: If you just need a copy of the existing key you can click the
+            clipboard icon to copy the token
+          </p>
+          <p className='note' id='important'>
+            Note: It is very important NOT TO SHARE this access token on the
+            internet. If it is accidently shared you will need to refresh the
+            access token and re-launch the application because the old access
+            token will no longer function to access the map functionality.
           </p>
         </div>
       </div>
