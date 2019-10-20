@@ -107,6 +107,7 @@ export default class Howto extends React.Component {
               How to restart the application via SSH to update MapBox tokens
             </li>
             <li>How to update SSL certificates</li>
+            <li>Team member contact information</li>
           </ul>
           <p></p>
         </div>
