@@ -36,7 +36,7 @@ export default class MapModal extends React.Component {
         <Divider />
         <DialogContent>
           <Typography variant="h5">
-            <Icon>{this.props.getIcon(this.props.zone.type)}</Icon>&nbsp;
+            <Icon>{this.props.getIcon(this.props.zone.projectType)}</Icon>&nbsp;
             {this.props.zone.projectName}
           </Typography>
 
