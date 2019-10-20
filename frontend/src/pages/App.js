@@ -34,7 +34,7 @@ const DisplayLinks = props => {
   } else {
     return (
       <nav className='navbar'>
-        <p> Hi ,this is home page</p>
+        {/* <p> Hi ,this is home page</p> */}
       </nav>
     );
   }
