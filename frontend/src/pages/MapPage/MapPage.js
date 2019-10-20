@@ -28,10 +28,6 @@ export default class Map extends React.Component {
   render() {
     const projectTypes = this.getProjectTypes();
     return (
-      <main>
-        <SearchAppBar />
-        <MapBox />
-        <MapLegend />
       <main className="map">
         <MapBox types={projectTypes} projectShown={this.state.filter} />
         <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
