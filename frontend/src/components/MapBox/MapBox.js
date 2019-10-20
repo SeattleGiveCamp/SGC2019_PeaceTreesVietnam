@@ -43,7 +43,6 @@ class MapBox extends Component {
   render() {
     const MAPBOX_URL = process.env.REACT_APP_MAPBOX;
     let { mapData } = this.props;
-    console.log(mapData);
 
     if (this.props.projectShown) {
       mapData = mapData.filter(project =>

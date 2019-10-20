@@ -66,7 +66,7 @@ export default class MapModal extends React.Component {
           </DialogContentText>
 
           <DialogActions>
-            {this.props.zone.pageUrl ? (
+            {/* {this.props.zone.pageUrl ? (
               <Button
                 onClick={this.handleClick}
                 variant="outlined"
@@ -76,7 +76,7 @@ export default class MapModal extends React.Component {
               </Button>
             ) : (
               undefined
-            )}
+            )} */}
           </DialogActions>
         </DialogContent>
       </Dialog>
