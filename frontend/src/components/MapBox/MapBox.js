@@ -4,6 +4,7 @@ import MapModal from "../MapModal/MapModal";
 import { Icon } from "@material-ui/core";
 import { connect } from "react-redux";
 import * as mapActions from "../../action/map-actions";
+import * as ordnanceActions from "../../action/ordnance-actions";
 
 class MapBox extends Component {
   constructor(props) {
@@ -92,6 +93,12 @@ class MapBox extends Component {
     this.setState({ selectedZone: null });
   };
 
+  showOrdance = () => {
+    if (this.props.projectShown) {
+      return this.props.projectShown.includes("Ordnance") ? true : false;
+    }
+  };
+
   render() {
     const MAPBOX_URL = process.env.REACT_APP_MAPBOX;
     let projects = this.getAllProjectCoordinates();
@@ -101,6 +108,11 @@ class MapBox extends Component {
         this.props.projectShown.includes(project.type)
       );
     }
+    const ordnanceData = this.props.ordnanceData
+      ? this.props.ordnanceData
+      : undefined;
+
+    const showOrdnance = this.showOrdance();
 
     const getIconType = iconType => {
       const projectType = this.props.types.find(el => el.type === iconType);
@@ -132,17 +144,29 @@ class MapBox extends Component {
               </Marker>
             );
           })}
+          {ordnanceData.length > 0 && showOrdnance
+            ? ordnanceData.map((zone, index) => {
+                const lat = +zone.parsedProperties.Lat;
+                const lng = +zone.parsedProperties.Long;
+                return (
+                  <Marker latitude={lat} longitude={lng} key={index}>
+                    <svg height="10" width="10">
+                      <circle cx="5" cy="5" r="4" fill="red" opacity="0.5" />
+                    </svg>
+                  </Marker>
+                );
+              })
+            : undefined}
         </ReactMapGL>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    projects: state.projects
-  };
-};
+const mapStateToProps = state => ({
+  mapData: state.mapData,
+  ordnanceData: state.ordnanceData
+});
 
 const mapDispatchToProps = dispatch => ({
   getAllProjects: () => dispatch(mapActions.getAllProjects())
