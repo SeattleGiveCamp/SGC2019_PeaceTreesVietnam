@@ -30,7 +30,7 @@ class AdminPage extends React.Component {
       // Read our XML file as JSON
       var geoJsonData = kml(xmldom);
 
-      // We need to do some additional work to "fully" convert the `geoJsonData` to JSON.
+      var ordnanceList = [{lat: "lat", lon: "lon"}];
 
       for (var featureNum in geoJsonData.features) {
         var feature = geoJsonData.features[featureNum];
@@ -38,55 +38,30 @@ class AdminPage extends React.Component {
           continue;
         }
 
-        // In geoJsonData.features array, each element (object) has a `.properties.description` string containing raw HTML
-        // Parse that raw HTML string into an actual JS DOM object
-        var propertiesDom = window.document
-          .createRange()
-          .createContextualFragment(feature.properties.description);
-        // We want to convert the table rows to JSON
-        var tableRows = propertiesDom.querySelectorAll("table tr");
+        var coordinates = feature.geometry.coordinates;
 
-        // And this JSON will be stored under a new key, `parsedProperties`
-        geoJsonData.features[featureNum].parsedProperties = {};
+        var lat = +coordinates[0].toFixed(5);
+        var lon = +coordinates[1].toFixed(5);
 
-        for (var rowNum in tableRows) {
-          var tableRow = tableRows[rowNum];
-          if (!tableRow || !(tableRow instanceof Node)) {
-            continue;
-          }
-          var dataPoints = tableRow.querySelectorAll("td");
-          // Format of table row should be:
-          // <tr>
-          //   <td>Label</td>
-          //   <td>Value</td>
-          // </tr>
-          if (dataPoints.length != 2) {
-            continue;
-          }
-
-          var dataPointLabel = dataPoints[0].textContent;
-          var dataPointValue = dataPoints[1].textContent;
-
-          // We add a key-value pair in the format:
-          // {label: value} as defined above
-          geoJsonData.features[featureNum].parsedProperties[
-            dataPointLabel
-          ] = dataPointValue;
-        }
+        ordnanceList.push({lat: lat, lon: lon});
       }
 
       console.log("Able to read all of the table data");
       // This is the final data, which shall be processed further once we move this code to the server.
-      console.log(geoJsonData);
+      var csvContent = "";
+      ordnanceList.forEach(function(ordnanceCoords) {
+          let row = ordnanceCoords.lat + "," + ordnanceCoords.lon;
+          csvContent += row + "\r\n";
+      });
+
       this.setState({ ordnanceData: geoJsonData.features });
       this.props.postOrdnanceData(this.state.ordnanceData);
       
-      var textJsonData = JSON.stringify(geoJsonData, null, 2);
 
       // Create a link, and click it to download the data
       var element = window.document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf=8,' + encodeURIComponent(textJsonData));
-      element.setAttribute('download', 'mine-data.json');
+      element.setAttribute('href', 'data:text/plain;charset=utf=8,' + encodeURIComponent(csvContent));
+      element.setAttribute('download', 'mine-data.csv');
       
       element.click();
     }
