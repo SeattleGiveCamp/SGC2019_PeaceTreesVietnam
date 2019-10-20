@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../styles/App.css";
 import MapPage from "./MapPage/MapPage";
 import Login from "./Login/Login";
@@ -14,13 +14,15 @@ function App() {
   return (
     <div className="App">
     <Header />
-      <BrowserRouter>      
-        <Route path="/" component={MapPage}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/form" component={Form}></Route>
-        <Route path="/error" component={ErrorPage}></Route>
-        <Route path="/ordnance" component={OrdnancePage}></Route>
-        <Route path="/admin" component={AdminPage}></Route>
+      <BrowserRouter>
+        <Switch>
+        <Route exact path="/" component={MapPage}></Route>
+        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/form" component={Form}></Route>
+        <Route exact path="/error" component={ErrorPage}></Route>
+        <Route exact path="/ordnance" component={OrdnancePage}></Route>
+        <Route exact path="/admin" component={AdminPage}></Route>
+        </Switch>
       </BrowserRouter>
     <Footer />
     </div>
