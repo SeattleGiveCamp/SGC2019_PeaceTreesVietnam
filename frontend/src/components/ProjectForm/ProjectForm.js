@@ -5,8 +5,8 @@ import DynamicSelect from '../../components/DynamicSelect/DynamicSelect';
 // TODO: This is just test data, remove when can populate from database call.
 const arrayOfProjectCategories = [
   {
-    id: '1 - Community Center',
-    name: 'Community Center'
+    id: '1 - Community Project',
+    name: 'Community Project'
   },
   {
     id: '2 - Library',
@@ -17,42 +17,19 @@ const arrayOfProjectCategories = [
     name: 'Kindergarten'
   },
   {
-    id: '4 - Domestic Violence Shelter',
-    name: 'Domestic Violence Shelter'
+    id: '4 - Economic Development Project',
+    name: 'Economic Development Project'
   },
   {
-    id: '5 - Agricultural Project',
-    name: 'Agricultural Project'
-  }
-];
-
-const arrayOfSponsors = [
-  {
-    id: '1 - Sponsor 1',
-    name: 'Sponsor 1'
-  },
-  {
-    id: '2 - Sponsor 2',
-    name: 'Sponsor 2'
-  },
-  {
-    id: '3 - Sponsor 3',
-    name: 'Sponsor 3'
-  },
-  {
-    id: '4 - Sponsor 4',
-    name: 'Sponsor 4'
-  },
-  {
-    id: '5 - Add a New Sponsor',
-    name: 'Add a New Sponsor'
+    id: '5 - Other',
+    name: 'Other'
   }
 ];
 
 const arrayOfProjStatus = [
   {
-    id: '1 - Paused',
-    name: 'Paused'
+    id: '1 - Repurposed',
+    name: 'Repurposed'
   },
   {
     id: '2 - Planned',
@@ -63,17 +40,51 @@ const arrayOfProjStatus = [
     name: 'Under Construction'
   },
   {
-    id: '4 - Complete',
+    id: '4 - Under Cultivation',
+    name: 'Under Cultivation'
+  },
+  {
+    id: '5 - Complete',
     name: 'Complete'
   }
 ];
 
+// const formInputDefaultState = {
+//   projectName: '',
+//   location: '',
+//   latitude: '',
+//   longitude: '',
+//   projectType: '',
+//   description: '',
+//   sponsors: '',
+//   dedicatedTo: '',
+//   projectStatus: '',
+//   completedYear: '',
+//   plantedYear: '',
+//   imageUrl: '',
+//   pageUrl: ''
+// };
+
 export default class ProjectForm extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       selectedValue: 'Select a Category',
-      hasChildren: false
+      hasChildren: false,
+      projectName: '',
+      location: '',
+      latitude: '',
+      longitude: '',
+      projectType: '',
+      description: '',
+      sponsors: '',
+      dedicatedTo: '',
+      projectStatus: '',
+      completedYear: '',
+      plantedYear: '',
+      imageUrl: '',
+      pageUrl: ''
     };
   }
 
@@ -82,14 +93,71 @@ export default class ProjectForm extends React.Component {
       selectedValue: selectedValue,
       hasChildren: hasChildren
     });
-    console.log(hasChildren, 'hasChildren');
   };
 
-  showStudents = () => {
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    console.log(event.target);
+    console.log(this.state.projectName);
+    formData.append('projectName', this.state.projectName);
+    formData.append('location', this.state.location);
+    formData.append('latitude', this.state.latitide);
+    formData.append('longitude', this.state.longitude);
+    formData.append('projectType', this.state.projectType);
+    formData.append('description', this.state.description);
+    formData.append('sponsors', this.state.sponsors);
+    formData.append('dedicatedTo', this.state.dedicatedTo);
+    formData.append('projectStatus', this.state.projectStatus);
+    formData.append('completedYear', this.state.completedYear);
+    formData.append('plantedYear', this.state.plantedYear);
+    formData.append('imageUrl', this.state.imageUrl);
+    formData.append('pageUrl', this.state.pageUrl);
+
+    fetch('https://ptbackendapp.herokuapp.com/', {
+      method: 'POST',
+
+      body: formData //data is an object
+
+      // headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => console.log(res))
+
+      .catch(error => console.error('Error:', error))
+
+      .then(response => console.log('Success:', response));
+  }
+
+  showYear = () => {
     return (
       <div>
-        <label>Number of Students</label>
-        <input type='number'></input>
+        <label>Year Completed</label>
+        <input
+          name='completedYear'
+          value={this.state.completedYear}
+          required
+          type='text'
+          onChange={this.handleChange}
+        ></input>
+      </div>
+    );
+  };
+
+  showPlanted = () => {
+    return (
+      <div>
+        <label>Year Planted</label>
+        <input
+          name='plantedYear'
+          value={this.state.plantedYear}
+          required
+          type='text'
+          onChange={this.handleChange}
+        ></input>
       </div>
     );
   };
@@ -100,49 +168,82 @@ export default class ProjectForm extends React.Component {
         <section>
           <p>X</p>
           <h1>Add a New Project</h1>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div>
               <label>Project Name</label>
-              <input></input>
+              <input
+                name='projectName'
+                value={this.state.projectName}
+                required
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
-              {/* TODO: Ask client if this is always a city/village. Could the value be populated with an API call using the lat/long? */}
-              <label>Location Name</label>
-              <input></input>
+              <label>Location</label>
+              <input
+                name='location'
+                value={this.state.location}
+                required
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
               <label>Latitude</label>
-              <input type='number'></input>
+              <input
+                required
+                name='latitude'
+                type='number'
+                step='0.0000001'
+                value={this.state.latitude}
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
               <label>Longitude</label>
-              <input type='number'></input>
+              <input
+                required
+                name='longitude'
+                type='number'
+                step='0.0000001'
+                value={this.state.longitude}
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
               <label>Type of Project</label>
-              {/* TODO: Allow Multiple Selections */}
               <DynamicSelect
                 name={'projectType'}
                 arrayOfData={arrayOfProjectCategories}
                 onSelectChange={this.handleSelectChange}
+                required
+                value={this.state.projectType}
+                onChange={this.handleChange}
               />
             </div>
-            {this.state.hasChildren ? this.showStudents() : undefined}
             <div className='description-area'>
               <label>Project Description</label>
-              <textarea></textarea>
+              <textarea
+                value={this.state.description}
+                name='description'
+                onChange={this.handleChange}
+              ></textarea>
             </div>
             <div>
               <label>Sponsors</label>
-              <DynamicSelect
-                name={'sponsors'}
-                arrayOfData={arrayOfSponsors}
-                onSelectChange={this.handleSelectChange}
-              />
+              <input
+                name='sponsors'
+                value={this.state.sponsors}
+                type='text'
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
               <label>Dedicated To</label>
-              <input></input>
+              <input
+                name='dedicatedTo'
+                value={this.state.dedicatedTo}
+                onChange={this.handleChange}
+              ></input>
             </div>
             <div>
               <label>Current Status</label>
@@ -150,7 +251,34 @@ export default class ProjectForm extends React.Component {
                 name={'projectStatus'}
                 arrayOfData={arrayOfProjStatus}
                 onSelectChange={this.handleSelectChange}
-              />{' '}
+                required
+                value={this.state.projectStatus}
+                onChange={this.handleChange}
+              />
+            </div>
+            {this.state.selectedValue === '5 - Complete'
+              ? this.showYear()
+              : undefined}
+            {this.state.selectedValue === '4 - Under Cultivation'
+              ? this.showPlanted()
+              : undefined}
+            <div>
+              <label>Image URL</label>
+              <input
+                name='imageUrl'
+                value={this.state.imageUrl}
+                type='url'
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div>
+              <label>Project Page URL</label>
+              <input
+                name='pageUrl'
+                value={this.state.pageUrl}
+                type='url'
+                onChange={this.handleChange}
+              ></input>
             </div>
             <button>Save Project</button>
           </form>
