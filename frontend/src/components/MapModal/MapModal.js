@@ -29,7 +29,8 @@ export default class MapModal extends React.Component {
       Year: this.props.zone.year,
       Province: this.props.zone.province,
       Sponsors: this.props.zone.sponsors,
-      Type: this.props.zone.type
+      Type: this.props.zone.type,
+      Link: this.props.zone.pageUrl
     };
   };
 
@@ -53,7 +54,7 @@ export default class MapModal extends React.Component {
           </List>
 
           <DialogActions>
-            <Button onClick={this.handleClick}>Learn More</Button>
+            <Button onClick={this.handleClick}><a href={this.props.zone.pageUrl}>Learn more</a></Button>
           </DialogActions>
         </DialogContent>
       </Dialog>
