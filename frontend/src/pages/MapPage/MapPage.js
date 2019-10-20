@@ -1,6 +1,7 @@
 import React from "react";
 import MapBox from "../../components/MapBox/MapBox";
 import MapLegend from "../../components/MapLegend/MapLegend";
+import SearchAppBar from "../../components/SearchAppBar";
 import "./MapPage.scss";
 
 export default class Map extends React.Component {
@@ -28,6 +29,7 @@ export default class Map extends React.Component {
     const projectTypes = this.getProjectTypes();
     return (
       <main className="map">
+        <SearchAppBar />
         <MapBox types={projectTypes} projectShown={this.state.filter} />
         <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
       </main>

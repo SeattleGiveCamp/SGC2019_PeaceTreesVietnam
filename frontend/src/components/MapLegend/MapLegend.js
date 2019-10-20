@@ -49,7 +49,7 @@ export default class MapLegend extends React.Component {
             return (
               <ListItem key={type.type}>
                 <ListItemIcon>
-                  <Icon>{type.icon}</Icon>
+                  <Icon></Icon>
                 </ListItemIcon>
                 <ListItemText>{type.type}</ListItemText>
                 <ListItemSecondaryAction>
