@@ -101,30 +101,31 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        {/* <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} /> */}
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={MapPage}></Route>
-            <Route exact path="/login" component={LoginForm}></Route>
-            <Route exact path="/form" component={Form}></Route>
-            <Route exact path="/error" component={ErrorPage}></Route>
-            <Route exact path="/table" component={TablePage}></Route>
-            <Route
-              exact
-              path="/admin"
-              render={() => <AdminPage user={this.state.user} />}
-              component={AdminPage}
-            ></Route>
-            <Route
-              exact
-              path="/login"
-              render={() => <LoginForm _login={this._login} />}
-            />
-            <Route exact path="/signup" component={SignupForm} />
-            <Route exact path="/manual" component={HowToPage}></Route>
-          </Switch>
-        </BrowserRouter>
+        <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+        {/* <BrowserRouter> */}
+        <Switch>
 
+        <Route exact path='/' component={MapPage}></Route>
+        {/* <Route exact path='/login' component={LoginForm}></Route> */}
+        <Route exact path='/form' component={Form}></Route>
+        <Route exact path='/table' component={TablePage}></Route>
+        <Route
+          exact
+          path='/admin'
+          render={() => <AdminPage user={this.state.user} />}
+          component={AdminPage}
+        ></Route>
+        <Route
+          exact
+          path='/login'
+          render={() => <LoginForm _login={this._login} />}
+        />
+        <Route exact path='/signup' component={SignupForm} />
+        <Route exact path='/manual' component={HowToPage}></Route>
+        <Route exact path='/logout' render={() => <Redirect to="/"/>}/>
+        <Route component={ErrorPage}></Route>
+        </Switch>
+        {/* </BrowserRouter> */}
         <Footer />
       </div>
     );
