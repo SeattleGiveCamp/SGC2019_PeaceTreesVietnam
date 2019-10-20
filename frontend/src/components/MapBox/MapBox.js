@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 import MapModal from "../MapModal/MapModal";
 import { Icon } from "@material-ui/core";
+import { connect } from "react-redux";
+import * as mapActions from "../../action/map-actions";
+import * as ordnanceActions from "../../action/ordnance-actions";
 
-export default class MapBox extends Component {
+class MapBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,12 +82,21 @@ export default class MapBox extends Component {
     return coordinates;
   };
 
+  // This is meant to be more of an overlay; does not need to be clickable really
+  getAllOrdnanceCoordinates = () => {};
+
   handleClick = zone => {
     this.setState({ selectedZone: zone });
   };
 
   handleClose = () => {
     this.setState({ selectedZone: null });
+  };
+
+  showOrdance = () => {
+    if (this.props.projectShown) {
+      return this.props.projectShown.includes("Ordnance") ? true : false;
+    }
   };
 
   render() {
@@ -96,6 +108,11 @@ export default class MapBox extends Component {
         this.props.projectShown.includes(project.type)
       );
     }
+    const ordnanceData = this.props.ordnanceData
+      ? this.props.ordnanceData
+      : undefined;
+
+    const showOrdnance = this.showOrdance();
 
     const getIconType = iconType => {
       const projectType = this.props.types.find(el => el.type === iconType);
@@ -127,8 +144,36 @@ export default class MapBox extends Component {
               </Marker>
             );
           })}
+          {ordnanceData.length > 0 && showOrdnance
+            ? ordnanceData.map((zone, index) => {
+                const lat = +zone.parsedProperties.Lat;
+                const lng = +zone.parsedProperties.Long;
+                return (
+                  <Marker latitude={lat} longitude={lng} key={index}>
+                    <svg height="10" width="10">
+                      <circle cx="5" cy="5" r="4" fill="red" opacity="0.5" />
+                    </svg>
+                  </Marker>
+                );
+              })
+            : undefined}
         </ReactMapGL>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  mapData: state.mapData,
+  ordnanceData: state.ordnanceData
+});
+
+const mapDispatchToProps = dispatch => ({
+  getAllProjects: () => dispatch(mapActions.getAllProjects())
+  // getAllOrdnances: () => dispatch(mapActions.getAllOrdnances())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MapBox);
