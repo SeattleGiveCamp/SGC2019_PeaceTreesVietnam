@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
-import '../styles/App.css';
-import MapPage from './MapPage/MapPage';
-import LoginForm from '../components/LoginForm/LoginForm.js';
-import SignupForm from '../components/LoginForm/SignupForm.js';
-import Form from './Form/Form';
-import ErrorPage from './ErrorPage/ErrorPage';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import TablePage from './TablePage/TablePage';
-import AdminPage from './AdminPage/AdminPage';
-import HowToPage from './HowToPage/HowToPage';
+import React, { Component } from "react";
+import axios from "axios";
+import { Route, Link, BrowserRouter, Switch } from "react-router-dom";
+import "../styles/App.css";
+import MapPage from "./MapPage/MapPage";
+import LoginForm from "../components/LoginForm/LoginForm.js";
+import SignupForm from "../components/LoginForm/SignupForm.js";
+import Form from "./Form/Form";
+import ErrorPage from "./ErrorPage/ErrorPage";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import TablePage from "./TablePage/TablePage";
+import AdminPage from "./AdminPage/AdminPage";
+import HowToPage from "./HowToPage/HowToPage";
 
 const DisplayLinks = props => {
   if (props.loggedIn) {
     return (
-      <nav className='navbar'>
-        <ul className='nav'>
-          <li className='nav-item'>
-            <Link to='/' className='nav-link'>
+      <nav className="navbar">
+        <ul className="nav">
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
               Home
             </Link>
           </li>
           <li>
-            <Link to='#' className='nav-link' onClick={props._logout}>
+            <Link to="#" className="nav-link" onClick={props._logout}>
               Logout
             </Link>
           </li>
@@ -32,11 +32,7 @@ const DisplayLinks = props => {
       </nav>
     );
   } else {
-    return (
-      <nav className='navbar'>
-        {/* <p> Hi ,this is home page</p> */}
-      </nav>
-    );
+    return <nav className="navbar">{/* <p> Hi ,this is home page</p> */}</nav>;
   }
 };
 
@@ -52,27 +48,27 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/auth/user').then(response => {
-      console.log(response.data);
-      if (!!response.data.user) {
-        console.log('THERE IS A USER');
-        this.setState({
-          loggedIn: true,
-          user: response.data.user
-        });
-      } else {
-        this.setState({
-          loggedIn: false,
-          user: null
-        });
-      }
-    });
+    // axios.get("/auth/user").then(response => {
+    //   console.log(response.data);
+    //   if (!!response.data.user) {
+    //     console.log("THERE IS A USER");
+    //     this.setState({
+    //       loggedIn: true,
+    //       user: response.data.user
+    //     });
+    //   } else {
+    //     this.setState({
+    //       loggedIn: false,
+    //       user: null
+    //     });
+    //   }
+    // });
   }
 
   _logout(event) {
     event.preventDefault();
-    console.log('logging out');
-    axios.post('/auth/logout').then(response => {
+    console.log("logging out");
+    axios.post("/auth/logout").then(response => {
       console.log(response.data);
       if (response.status === 200) {
         this.setState({
@@ -85,7 +81,7 @@ export default class App extends Component {
 
   _login(username, password) {
     axios
-      .post('/auth/login', {
+      .post("/auth/login", {
         username,
         password
       })
@@ -103,7 +99,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Header />
         <DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
         {/* <BrowserRouter> */}

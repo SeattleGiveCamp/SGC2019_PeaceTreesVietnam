@@ -1,53 +1,56 @@
-import React from 'react';
-import formStyle from './project-form.module.scss';
-import DynamicSelect from '../../components/DynamicSelect/DynamicSelect';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-
+import React from "react";
+import formStyle from "./project-form.module.scss";
+import DynamicSelect from "../../components/DynamicSelect/DynamicSelect";
+import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import { connect } from "react-redux";
+import { shadows } from "@material-ui/system";
+import * as mapActions from "../../action/map-actions";
 // TODO: This is just test data, remove when can populate from database call.
 const arrayOfProjectCategories = [
   {
-    id: '1 - Community Project',
-    name: 'Community Project'
+    id: "1 - Community Project",
+    name: "Community Project"
   },
   {
-    id: '2 - Library',
-    name: 'Library'
+    id: "2 - Library",
+    name: "Library"
   },
   {
-    id: '3 - Kindergarten',
-    name: 'Kindergarten'
+    id: "3 - Kindergarten",
+    name: "Kindergarten"
   },
   {
-    id: '4 - Economic Development Project',
-    name: 'Economic Development Project'
+    id: "4 - Economic Development Project",
+    name: "Economic Development Project"
   },
   {
-    id: '5 - Other',
-    name: 'Other'
+    id: "5 - Other",
+    name: "Other"
   }
 ];
 
 const arrayOfProjStatus = [
   {
-    id: '1 - Repurposed',
-    name: 'Repurposed'
+    id: "1 - Repurposed",
+    name: "Repurposed"
   },
   {
-    id: '2 - Planned',
-    name: 'Planned'
+    id: "2 - Planned",
+    name: "Planned"
   },
   {
-    id: '3 - Under Construction',
-    name: 'Under Construction'
+    id: "3 - Under Construction",
+    name: "Under Construction"
   },
   {
-    id: '4 - Under Cultivation',
-    name: 'Under Cultivation'
+    id: "4 - Under Cultivation",
+    name: "Under Cultivation"
   },
   {
-    id: '5 - Complete',
-    name: 'Complete'
+    id: "5 - Complete",
+    name: "Complete"
   }
 ];
 
@@ -67,26 +70,26 @@ const arrayOfProjStatus = [
 //   pageUrl: ''
 // };
 
-export default class ProjectForm extends React.Component {
+class ProjectForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      selectedValue: 'Select a Category',
+      selectedValue: "Select a Category",
       hasChildren: false,
-      projectName: '',
-      location: '',
-      latitude: '',
-      longitude: '',
-      projectType: '',
-      description: '',
-      sponsors: '',
-      dedicatedTo: '',
-      projectStatus: '',
-      completedYear: '',
-      plantedYear: '',
-      imageUrl: '',
-      pageUrl: ''
+      projectName: "",
+      location: "",
+      latitude: "",
+      longitude: "",
+      projectType: "",
+      description: "",
+      sponsors: "",
+      dedicatedTo: "",
+      projectStatus: "",
+      completedYear: "",
+      plantedYear: "",
+      imageUrl: "",
+      pageUrl: ""
     };
   }
 
@@ -104,34 +107,35 @@ export default class ProjectForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
-    console.log(event.target);
-    console.log(this.state.projectName);
-    formData.append('projectName', this.state.projectName);
-    formData.append('location', this.state.location);
-    formData.append('latitude', this.state.latitide);
-    formData.append('longitude', this.state.longitude);
-    formData.append('projectType', this.state.projectType);
-    formData.append('description', this.state.description);
-    formData.append('sponsors', this.state.sponsors);
-    formData.append('dedicatedTo', this.state.dedicatedTo);
-    formData.append('projectStatus', this.state.projectStatus);
-    formData.append('completedYear', this.state.completedYear);
-    formData.append('plantedYear', this.state.plantedYear);
-    formData.append('imageUrl', this.state.imageUrl);
-    formData.append('pageUrl', this.state.pageUrl);
+    formData.append("projectName", this.state.projectName);
+    formData.append("location", this.state.location);
+    formData.append("latitude", this.state.latitide);
+    formData.append("longitude", this.state.longitude);
+    formData.append("projectType", this.state.projectType);
+    formData.append("description", this.state.description);
+    formData.append("sponsors", this.state.sponsors);
+    formData.append("dedicatedTo", this.state.dedicatedTo);
+    formData.append("projectStatus", this.state.projectStatus);
+    formData.append("completedYear", this.state.completedYear);
+    formData.append("plantedYear", this.state.plantedYear);
+    formData.append("imageUrl", this.state.imageUrl);
+    formData.append("pageUrl", this.state.pageUrl);
 
-    fetch('https://ptbackendapp.herokuapp.com/', {
-      method: 'POST',
+    console.log("submit");
+    this.props.addProject(formData);
 
-      body: formData //data is an object
+    // fetch('https://ptbackendapp.herokuapp.com/', {
+    //   method: 'POST',
 
-      // headers: { 'Content-Type': 'application/json' }
-    })
-      .then(res => console.log(res))
+    //   body: formData //data is an object
 
-      .catch(error => console.error('Error:', error))
+    //   // headers: { 'Content-Type': 'application/json' }
+    // })
+    //   .then(res => console.log(res))
 
-      .then(response => console.log('Success:', response));
+    //   .catch(error => console.error('Error:', error))
+
+    //   .then(response => console.log('Success:', response));
   }
 
   showYear = () => {
@@ -142,10 +146,10 @@ export default class ProjectForm extends React.Component {
         </div>
         <br/>
         <input
-          name='completedYear'
+          name="completedYear"
           value={this.state.completedYear}
           required
-          type='text'
+          type="text"
           onChange={this.handleChange}
         ></input>
       </div>
@@ -160,10 +164,10 @@ export default class ProjectForm extends React.Component {
       </div>
       <br/>
         <input
-          name='plantedYear'
+          name="plantedYear"
           value={this.state.plantedYear}
           required
-          type='text'
+          type="text"
           onChange={this.handleChange}
         ></input>
       </div>
@@ -310,3 +314,13 @@ export default class ProjectForm extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  addProject: formData => dispatch(mapActions.addProject(formData))
+  // getAllOrdnances: () => dispatch(mapActions.getAllOrdnances())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProjectForm);
