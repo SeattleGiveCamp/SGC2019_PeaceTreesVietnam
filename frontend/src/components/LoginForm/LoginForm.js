@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "./LoginForm.scss";
 
-export default class LoginForm extends React.Component {
+export default class LoginForm extends Component {
   constructor() {
     super();
     this.state = { username: '',
@@ -21,60 +20,42 @@ export default class LoginForm extends React.Component {
 		})
   }
   handleSubmit(event) {
-		event.preventDefault()
-		// TODO - validate!
-		axios
-			.post('/auth/signup', {
-				username: this.state.username,
-				password: this.state.password
-			})
-			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
-					console.log('youre good')
-					this.setState({
-						redirectTo: '/login'
-					})
-				} else {
-					console.log('duplicate')
-				}
-			})
-	}
+	event.preventDefault()
+	console.log('handleSubmit')
+	this.props._login(this.state.username, this.state.password)
+	this.setState({
+		redirectTo: '/'
+	})
+}
 
-  render() {
-    
-
-    if (this.state.redirectTo) {
-			return <Redirect to={{ pathname: this.state.redirectTo }} />
-		}
+render() {
+	if (this.state.redirectTo) {
+		return <Redirect to={{ pathname: this.state.redirectTo }} />
+	} else {
 		return (
 			<div className="LoginForm">
-				<h1>Signup form</h1>
-				<label htmlFor="username">Username: </label>
-				<input
-					type="text"
-					name="username"
-					value={this.state.username}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="password">Password: </label>
-				<input
-					type="password"
-					name="password"
-					value={this.state.password}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="confirmPassword">Confirm Password: </label>
-				<input
-					type="password"
-					name="confirmPassword"
-					value={this.state.confirmPassword}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.handleSubmit}>Sign up</button>
+				<h1>Login form</h1>
+				<form>
+					<label htmlFor="username">Username: </label>
+					<input
+						type="text"
+						name="username"
+						value={this.state.username}
+						onChange={this.handleChange}
+					/>
+					<label htmlFor="password">Password: </label>
+					<input
+						type="password"
+						name="password"
+						value={this.state.password}
+						onChange={this.handleChange}
+					/>
+					<button onClick={this.handleSubmit}>Login</button>
+				</form>
 			</div>
 		)
-  }
+	}
+}
 }
 
 // export default LoginForm

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../styles/App.css';
 import MapPage from './MapPage/MapPage';
-import Login from './Login/Login';
+import LoginForm from '../components/LoginForm/LoginForm.js';
 import Form from './Form/Form';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Header from '../components/Header/Header';
@@ -17,7 +17,7 @@ export default function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/map' component={MapPage}></Route>
-          <Route exact path='/login' component={Login}></Route>
+          <Route exact path='/login' component={LoginForm}></Route>
           <Route exact path='/form' component={Form}></Route>
           <Route exact path='/error' component={ErrorPage}></Route>
           <Route exact path='/table' component={TablePage}></Route>
