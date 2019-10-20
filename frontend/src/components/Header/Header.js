@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-<<<<<<< HEAD
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-=======
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
->>>>>>> 09d440b69b954105658b5577579670aaa53f56d7
+
 
 export default function Header() {
   const classes = useStyles();
