@@ -1,11 +1,12 @@
 const express = require("express");
 const mysql = require("mysql");
+require('dotenv').config();
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "example",
-  database: "Vietnam",
+  host: "138.68.241.63",
+  user: "peacetrees_admin",
+  password: process.env.MYSQL_ROOT_PASSWORD,
+  database: "PeaceTrees_Vietnam",
   port: "3306"
 });
 
@@ -14,11 +15,13 @@ connection.connect();
 app.get("/", getData);
 
 function getData(req, res) {
-  let SQL="SELECT * FROM ProjectInfo";
+  let SQL="SELECT * FROM Location";
   connection.query(SQL, function(err, results, fields){
     if(err) console.log(err);
     else console.log("Connected!");
     console.log(results);
+
+    res.send(results);
   });
 }
 
