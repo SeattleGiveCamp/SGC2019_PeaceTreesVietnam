@@ -1,54 +1,60 @@
-import React from "react";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import "./LoginForm.scss";
 
-import "./LoginForm.scss"
-
-export default class LoginForm extends React.Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = { username: "", password: "", loading: false };
-    this.loginUser = this.loginUser.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-  }
-
-  handleUsernameChange(e) {
-    this.setState({username: e.target.value});
-  }
-
-  handlePasswordChange(e) {
-    this.setState({password: e.target.value});
-  }
-
-  loginUser = (e) => {
-    alert("Logged in with username " + this.state.username);
+export default class LoginForm extends Component {
+  constructor() {
+    super();
+    this.state = { username: '',
+     password: '',
+     redirectTo: null
   };
-
-  render() {
-    var inputStyles = {padding: "1em"};
-
-    return (<div>
-      <form>
-        <div>
-          <label for="login-username">
-            <input type="text" style={inputStyles} value={this.state.username} onChange={this.handleUsernameChange} />
-          </label>
-        </div>
-
-        <div>
-          <label for="login-password">
-            <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-          </label>
-        </div>
-
-        <div>
-          <a href="#">Forgot password?</a>
-        </div>
-
-        <div>
-          <button type="submit" onClick={this.loginUser}>Login</button>
-        </div>
-      </form>
-    </div>);
+  this.handleSubmit = this.handleSubmit.bind(this)
+  this.handleChange = this.handleChange.bind(this)
   }
+
+  handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+  }
+  handleSubmit(event) {
+	event.preventDefault()
+	console.log('handleSubmit')
+	this.props._login(this.state.username, this.state.password)
+	this.setState({
+		redirectTo: '/admin'
+	})
 }
+
+render() {
+	if (this.state.redirectTo) {
+		return <Redirect to={{ pathname: this.state.redirectTo }} />
+	} else {
+		return (
+			<div className="LoginForm">
+				<h1>Login form</h1>
+				<form>
+					<label htmlFor="username">Username: </label>
+					<input
+						type="text"
+						name="username"
+						value={this.state.username}
+						onChange={this.handleChange}
+					/>
+					<label htmlFor="password">Password: </label>
+					<input
+						type="password"
+						name="password"
+						value={this.state.password}
+						onChange={this.handleChange}
+					/>
+					<button onClick={this.handleSubmit}>Login</button>
+				</form>
+			</div>
+		)
+	}
+}
+}
+
+// export default LoginForm
