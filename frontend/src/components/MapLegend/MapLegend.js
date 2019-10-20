@@ -44,6 +44,12 @@ class MapLegend extends React.Component {
   };
 
   render() {
+    const styles = {
+      root: {
+        backgroundColor: "#b0bd22",
+        color: "#b0bd22"
+      }
+    };
     return (
       <Card className="legend">
         <Typography gutterBottom variant="h5" component="h2">
@@ -54,7 +60,7 @@ class MapLegend extends React.Component {
             return (
               <ListItem key={type.type}>
                 <ListItemIcon>
-                  <Icon></Icon>
+                  <Icon>{type.icon}</Icon>
                 </ListItemIcon>
                 <ListItemText>{type.type}</ListItemText>
                 <ListItemSecondaryAction>
@@ -67,6 +73,7 @@ class MapLegend extends React.Component {
                     onChange={() => this.handleChange(type.type, index)}
                     value={type.type}
                     size="small"
+                    classes={styles.root}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
