@@ -10,7 +10,7 @@ import Footer from '../components/Footer/Footer';
 import TablePage from './TablePage/TablePage';
 import AdminPage from './AdminPage/AdminPage';
 
-function App() {
+export default function App() {
   return (
     <div className='App'>
       <Header />
