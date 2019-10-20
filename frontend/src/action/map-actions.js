@@ -1,17 +1,18 @@
 import superagent from "superagent";
 
-const API_URL = process.env.REACT_APP_API_KEY || "http://138.68.241.63:3001";
-console.log(API_URL);
+const API_URL = process.env.REACT_APP_API_KEY || "http://159.89.146.24:3000";
 
 export const addProject = project => store => {
+  console.log(project);
   // Once we get a DB, it will connect here
   return superagent
     .post(`${API_URL}/Project`)
     .send(project)
     .set("Accept", "application/json")
     .then(response => {
+      console.log(response);
       // Returns data and stores to state after making the update
-      return store.dispatch(get(response.data));
+      return store.dispatch(get(response.body));
     });
 };
 

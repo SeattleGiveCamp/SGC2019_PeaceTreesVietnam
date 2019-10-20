@@ -84,7 +84,12 @@ class MapLegend extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  mapData: state.mapData,
+  ordnanceData: state.ordnanceData
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   null
 )(MapLegend);

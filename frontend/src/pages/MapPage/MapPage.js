@@ -1,11 +1,10 @@
 import React from "react";
 import MapBox from "../../components/MapBox/MapBox";
 import MapLegend from "../../components/MapLegend/MapLegend";
-import SearchAppBar from "../../components/SearchAppBar";
+import { connect } from "react-redux";
 import "./MapPage.scss";
-import AdminPage from "../AdminPage/AdminPage";
 
-export default class Map extends React.Component {
+class MapPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,10 +32,23 @@ export default class Map extends React.Component {
     return (
       <main className="container">
         <h1>Our Work</h1>
-        {/* <SearchAppBar /> */}
         <MapBox types={projectTypes} projectShown={this.state.filter} />
-        <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
+        {this.props.mapData ? (
+          <MapLegend types={projectTypes} onChange={this.handleChangeFilter} />
+        ) : (
+          undefined
+        )}
       </main>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  mapData: state.mapData,
+  ordnanceData: state.ordnanceData
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(MapPage);
