@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { kml } from "./togeojson";
 import { connect } from "react-redux";
 import * as ordnanceActions from "../../action/ordnance-actions";
@@ -6,6 +7,7 @@ import * as ordnanceActions from "../../action/ordnance-actions";
 class AdminPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {kmzProgress: 0};
 
     this.handleSelectedFile = this.handleSelectedFile.bind(this);
     this.state = {
@@ -72,6 +74,10 @@ class AdminPage extends React.Component {
             dataPointLabel
           ] = dataPointValue;
         }
+
+        var kmzProgress = Math.ceil(100 * (featureNum / geoJsonData.features.length));
+        if (this.state.kmzProgress != kmzProgress) {
+          this.setState({kmzProgress: kmzProgress});
       }
 
       console.log("Able to read all of the table data");
@@ -79,7 +85,16 @@ class AdminPage extends React.Component {
       console.log(geoJsonData);
       this.setState({ ordnanceData: geoJsonData.features });
       this.props.postOrdnanceData(this.state.ordnanceData);
-    };
+      
+      var textJsonData = JSON.stringify(geoJsonData, null, 2);
+
+      // Create a link, and click it to download the data
+      var element = window.document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf=8,' + encodeURIComponent(textJsonData));
+      element.setAttribute('download', 'mine-data.json');
+      
+      element.click();
+    }.bind(this);
 
     // Read the uploaded file as text
     reader.readAsText(e.target.files[0]);
@@ -88,11 +103,24 @@ class AdminPage extends React.Component {
   render() {
     return (
       <div>
-        <h3>Upload KMZ</h3>
+        <h3>Upload mine data KML file</h3>
         <form>
-          Please upload unzipped KML file for now! Will fix later.
-          <input type="file" onChange={this.handleSelectedFile} />
+          <p>Please upload unzipped KML file for now! Will provide support for KMZ later.</p>
+          <div>
+          <input type="file" onChange={this.handleSelectedFile} accept="application/vnd.google-earth.kml+xml,application/vnd.google-earth.kmz" />
+          </div>
+          
+          <progress value={this.state.kmzProgress} max="100"></progress> {this.state.kmzProgress} / 100
         </form>
+
+        <hr />
+
+        <h3>Add project</h3>
+        <Link to="/form">Go to Add Project</Link>
+
+        <hr />
+        <h3>Project table</h3>
+        <Link to="/table">View Project table</Link>
       </div>
     );
   }
