@@ -1,6 +1,7 @@
 import superagent from "superagent";
 
-const API_URL = process.env.REACT_APP_API_KEY || "http://138.68.241.63:3001";
+// const API_URL = process.env.REACT_APP_API_KEY || "http://138.68.241.63:3001";
+const API_URL = process.env.REACT_APP_API_KEY || "http://localhost3001";
 console.log(API_URL);
 
 export const addProject = project => store => {

@@ -110,7 +110,7 @@ export default class App extends Component {
         {/* <Switch> */}
         <Route exact path='/' component={MapPage}></Route>
         {/* <Route exact path='/login' component={LoginForm}></Route> */}
-        <Route exact path='/form' component={Form}></Route>
+        <Route exact path='/form' render = {() => <Form project = {this.state.project} />}component={Form}></Route>
         <Route exact path='/error' component={ErrorPage}></Route>
         <Route exact path='/table' component={TablePage}></Route>
         <Route
