@@ -63,10 +63,10 @@ CREATE TABLE Project (
     pageUrl VARCHAR(200),
     notes TEXT,
     location_id INT NOT NULL,
-    FOREIGN KEY (location_id) REFERENCES Location(id)
-    FOREIGN KEY (projectType) REFERENCES ProjectCategory(id)
+    FOREIGN KEY (location_id) REFERENCES Location(id),
+    FOREIGN KEY (projectType) REFERENCES ProjectCategory(id),
     FOREIGN KEY (projectStatus) REFERENCES ProjectStatus(id)
-);
+) CHARACTER SET utf8mb4;
 COMMIT;
 CREATE TABLE Ordnance (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
