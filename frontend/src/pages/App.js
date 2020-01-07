@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Link, BrowserRouter, Switch,  Redirect } from "react-router-dom";
+import { Route, Link, Switch,  Redirect } from "react-router-dom";
 import "../styles/App.css";
 import MapPage from "./MapPage/MapPage";
 import LoginForm from "../components/LoginForm/LoginForm.js";

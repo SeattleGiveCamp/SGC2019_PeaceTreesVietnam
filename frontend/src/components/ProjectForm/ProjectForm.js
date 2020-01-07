@@ -1,11 +1,8 @@
 import React from "react";
-import formStyle from "./project-form.module.scss";
 import DynamicSelect from "../../components/DynamicSelect/DynamicSelect";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import NativeSelect from "@material-ui/core/NativeSelect";
 import { connect } from "react-redux";
-import { shadows } from "@material-ui/system";
 import * as mapActions from "../../action/map-actions";
 // TODO: This is just test data, remove when can populate from database call.
 const arrayOfProjectCategories = [
@@ -284,7 +281,7 @@ class ProjectForm extends React.Component {
               ? this.showPlanted()
               : undefined}
             <div style={{justifyContent: "flex-start"}}>
-              <a href="/manual" style={{fontSize: "20px", color: "black", fontSize: "1rem", margin: 0, textDecoration: "none"}}><i class="fas fa-info-circle"></i>  Click here to see instructions on image URL and Project Page URL</a>
+              <a href="/manual" style={{color: "black", fontSize: "1rem", margin: 0, textDecoration: "none"}}><i class="fas fa-info-circle"></i>  Click here to see instructions on image URL and Project Page URL</a>
             </div>
             <div>
               <input
