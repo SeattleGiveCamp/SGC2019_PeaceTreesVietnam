@@ -3,7 +3,6 @@ import React from "react";
 import DynamicSelect from "../DynamicSelect/DynamicSelect";
 
 export default class OrdnanceForm extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -102,7 +101,6 @@ export default class OrdnanceForm extends React.Component {
         </div>
         </form>
       </div>
-
     );
   }
 }

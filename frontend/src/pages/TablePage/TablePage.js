@@ -1,10 +1,6 @@
 import React from 'react';
 import ProjectsTable from '../../components/DataTableView/DataTableView';
 
-export default class Header extends React.Component {
-  state = {};
+var Header = () => (<ProjectsTable />);
 
-  render() {
-    return <ProjectsTable />;
-  }
-}
+export default Header;
