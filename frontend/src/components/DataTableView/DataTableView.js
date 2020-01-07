@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import MaterialTable from "material-table";
-import tableStyle from "./data-table.module.scss";
-import { Edit, Remove } from "@material-ui/icons";
 import * as mapActions from "../../action/map-actions";
 
 class ProjectTable extends React.Component {

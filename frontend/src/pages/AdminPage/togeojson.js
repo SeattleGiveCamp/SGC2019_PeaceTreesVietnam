@@ -4,7 +4,7 @@ function nodeVal(x) {
   if (x && x.normalize) {
     x.normalize();
   }
-  return x && x.textContent || "";
+  return (x && x.textContent) || "";
 }
 
 function getLineStyle(extensions) {
@@ -133,7 +133,7 @@ function getTrack(node) {
     if (line) {
       if (line.line) track.push(line.line);
       if (line.times && line.times.length) times.push(line.times);
-      if (heartRates.length || line.heartRates && line.heartRates.length) {
+      if (heartRates.length || (line.heartRates && line.heartRates.length)) {
         if (!heartRates.length) {
           for (let s = 0; s < i; s++) {
             heartRates.push(Array(track[s].length).fill(null));
@@ -224,18 +224,12 @@ function get1$1(x, y) {
 
 // get one coordinate from a coordinate array, if any
 function coord1(v) {
-  return v.
-  replace(removeSpace, "").
-  split(",").
-  map(parseFloat);
+  return v.replace(removeSpace, "").split(",").map(parseFloat);
 }
 
 // get all coordinates from a coordinate array as [[],[]]
 function coord(v) {
-  return v.
-  replace(trimSpace, "").
-  split(splitSpace).
-  map(coord1);
+  return v.replace(trimSpace, "").split(splitSpace).map(coord1);
 }
 
 function xml2str(node) {
@@ -283,11 +277,7 @@ function gxCoords(root) {
   const times = [];
   if (elems.length === 0) elems = root.getElementsByTagName("gx:coord");
   for (let i = 0; i < elems.length; i++) {
-    coords.push(
-    nodeVal(elems[i]).
-    split(" ").
-    map(parseFloat));
-
+    coords.push(nodeVal(elems[i]).split(" ").map(parseFloat));
   }
   const timeElems = root.getElementsByTagName("when");
   for (let j = 0; j < timeElems.length; j++) times.push(nodeVal(timeElems[j]));
@@ -491,9 +481,7 @@ function* kmlGen(doc) {
     styleByHash[hash] = styles[k];
   }
   for (let l = 0; l < styleMaps.length; l++) {
-    styleIndex["#" + styleMaps[l].getAttribute("id")] = okhash(
-    xml2str(styleMaps[l])).
-    toString(16);
+    styleIndex["#" + styleMaps[l].getAttribute("id")] = okhash(xml2str(styleMaps[l])).toString(16);
     const pairs = styleMaps[l].getElementsByTagName("Pair");
     const pairsMap = {};
     for (let m = 0; m < pairs.length; m++) {

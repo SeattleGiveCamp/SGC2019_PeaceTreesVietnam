@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as ordnanceActions from "../../action/ordnance-actions";
 import {
   Card,
   List,
@@ -24,18 +23,23 @@ class MapLegend extends React.Component {
   }
 
   handleChange = (value, index) => {
+    var checkedArr = this.state.checked.slice();
+
     if (!this.state.checked.length) {
       this.props.types.forEach((type, i) => {
-        this.state.checked[i] = type.id;
+        checkedArr[i] = type.id;
+
         if (type.type === "Ordnance") {
-          this.state.checked[i] = false;
+          checkedArr[i] = false;
         }
       });
     } else if (this.state.checked[index]) {
-      this.state.checked[index] = null;
+      checkedArr[index] = null;
     } else {
-      this.state.checked[index] = value;
+      checkedArr = value;
     }
+
+    this.setState("checked", checkedArr);
     this.props.onChange(this.state.checked);
   };
 
@@ -44,12 +48,6 @@ class MapLegend extends React.Component {
   };
 
   render() {
-    const styles = {
-      root: {
-        backgroundColor: "#b0bd22",
-        color: "#b0bd22"
-      }
-    };
     return (
       <Card className="legend">
         <Typography gutterBottom variant="h5" component="h2">

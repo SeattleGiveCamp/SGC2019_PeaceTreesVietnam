@@ -1,9 +1,5 @@
 import React from "react";
 
-export default class AddToDatabase extends React.Component {
-  state = {};
+var AddToDatabase = () => (<div>AddToDatabase</div>);
 
-  render() {
-    return <div>AddToDatabase</div>;
-  }
-}
+export default AddToDatabase;

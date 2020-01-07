@@ -3,22 +3,24 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 class SignupForm extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props);
 		this.state = {
 			username: '',
 			password: '',
 			confirmPassword: '',
 			redirectTo: null
-		}
-		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
+		};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
+
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
-		})
+		});
 	}
+
 	handleSubmit(event) {
 		event.preventDefault()
 		// TODO - validate!
@@ -37,8 +39,9 @@ class SignupForm extends Component {
 				} else {
 					console.log('duplicate')
 				}
-			})
+			});
 	}
+
 	render() {
 		if (this.state.redirectTo) {
 			return <Redirect to={{ pathname: this.state.redirectTo }} />
@@ -69,8 +72,8 @@ class SignupForm extends Component {
 				/>
 				<button onClick={this.handleSubmit}>Sign up</button>
 			</div>
-		)
+		);
 	}
 }
 
-export default SignupForm
+export default SignupForm;

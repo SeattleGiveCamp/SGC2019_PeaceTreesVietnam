@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, Link, BrowserRouter, Switch,  Redirect } from "react-router-dom";
+import { Route, Link, Switch,  Redirect } from "react-router-dom";
 import "../styles/App.css";
 import MapPage from "./MapPage/MapPage";
 import LoginForm from "../components/LoginForm/LoginForm.js";
@@ -32,13 +32,13 @@ const DisplayLinks = props => {
       </nav>
     );
   } else {
-    return <nav className="navbar">{/* <p> Hi ,this is home page</p> */}</nav>;
+    return <nav className="navbar"></nav>;
   }
 };
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loggedIn: false,
       user: null

@@ -3,12 +3,8 @@ import { Link } from "react-router-dom";
 import { kml } from "./togeojson";
 import { connect } from "react-redux";
 import {
-  Fab,
-  Divider,
-  Icon,
   Card,
   CardContent,
-  CardHeader,
   Button,
   CardActions
 } from "@material-ui/core";
