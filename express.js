@@ -4,11 +4,11 @@ const bodyParser = require("body-parser");
 require('dotenv').config();
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "peacetrees_admin",
-  password: process.env.MYSQL_ROOT_PASSWORD,
-  database: "PeaceTrees_Vietnam",
-  port: "3306"
+  host: process.env.MYSQL_DB_HOST,
+  user: process.env.MYSQL_DB_USER,
+  password: process.env.MYSQL_DB_PASSWORD,
+  database: process.env.MYSQL_DB_NAME,
+  port: process.env.MYSQL_DB_PORT
 });
 
 const app = express();
