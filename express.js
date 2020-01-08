@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 require('dotenv').config();
 
 var connection = mysql.createConnection({
@@ -13,6 +14,7 @@ var connection = mysql.createConnection({
 
 const app = express();
 connection.connect();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.get("/", getProject);
